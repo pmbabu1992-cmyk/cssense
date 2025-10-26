@@ -1,0 +1,206 @@
+<app-page-header [title]="'Select2'"
+  [items]="['Forms']"
+  [active_item]="'Select2'"
+ />
+<!-- Start::row-1 -->
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">Basic Select2</div>
+            </div>
+            <div class="card-body">
+                <cs-ng-select 
+                [options]="Selection"
+                [selectClass]="'js-example-basic-single form-control'"
+                [clearable]="true"
+                [searchable]="true"
+                [hideSelected]="true"
+                [placeholder]="'Selection-1'"
+                [additionalProperties]="{}">
+                </cs-ng-select>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">
+                  Multiple Select
+              </div>
+          </div>
+          <div class="card-body">
+              <cs-ng-select 
+              [options]="multipleSelect"
+              [clearable]="true"
+              [selectClass]="'form-control'"
+              [multiple]="true"
+              [defaultValue]="selectedMulti"
+              [searchable]="true"
+              [hideSelected]="true"
+              [placeholder]="''"
+              [additionalProperties]="{}">
+              </cs-ng-select>
+          </div>
+      </div>
+  </div>
+    <div class="col-xl-4">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Single Select With Placeholder
+                </div>
+            </div>
+            <div class="card-body">
+                <cs-ng-select 
+                [options]="singleSelection"
+                [selectClass]="'js-example-basic-single js-states form-control'"
+                [clearable]="true"
+                [searchable]="true"
+                [hideSelected]="true"
+                [placeholder]="'Texas'"
+                [additionalProperties]="{}">
+                </cs-ng-select>
+           
+            </div>
+        </div>
+    </div>
+   
+  
+    <div class="col-xl-4">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Multiple Select With Placeholder
+                </div>
+            </div>
+            <div class="card-body">
+                
+                <cs-ng-select 
+                [options]="multipleSelection"
+                [selectClass]="'js-example-basic-single js-states form-control'"
+                [clearable]="true"
+                [multiple]="true"
+                [searchable]="true"
+                [hideSelected]="true"
+                [placeholder]="'Select a State'"
+                [additionalProperties]="{}">
+                </cs-ng-select>
+               
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Templating
+                </div>
+            </div>
+            <div class="card-body">
+             
+                <ng-select placeholder=" Select" [items]="cities1" class="form-control" [ngModel]="selectedCity" bindLabel="name"
+                bindValue="name">
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    {{item.name}}
+                </ng-template>
+            </ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Templating Selection
+                </div>
+            </div>
+            <div class="card-body">
+
+                <ng-select [items]="cities1" class="form-control" [(ngModel)]="selectedCity1" [maxSelectedItems]="2" bindLabel="name"
+                bindValue="name">
+                <ng-template ng-label-tmp let-item="item">
+                    <img height="15" width="15" [src]="item.avatar" />
+                    {{ item.name }}
+                </ng-template>
+                <input style="width: 100%; line-height: 24px" type="text" />
+            </ng-select>
+ 
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->
+
+<!-- Start:: row-2 -->
+<div class="row">
+    
+    <div class="col-xl-6">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Max Selections Limiting
+                </div>
+            </div>
+            <div class="card-body">
+                <cs-ng-select 
+                #select
+                [options]="Selection1"
+                [selectClass]="'js-example-basic-single js-states form-control'"
+                [clearable]="true"
+                [defaultValue]="selectedPersonId"
+                [multiple]="true"
+                [searchable]="true"
+                [hideSelected]="true"
+                [maxSelectedItems]="3" 
+                [additionalProperties]="{}">
+                </cs-ng-select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">
+                  Disabling a Select2 control
+              </div>
+          </div>
+          <div class="card-body vstack gap-3 custom-select2">
+              <cs-ng-select 
+              [selectClass]="'js-example-disabled mb-3 form-control'"
+              [clearable]="true"
+              [options]="Selection"
+              [defaultValue]="selectedMulti"
+              [searchable]="true"
+              [disabled]="disable"
+              [hideSelected]="true"
+              [placeholder]="'Selection-1'"
+              [additionalProperties]="{}"
+              (valueChange)="onCitySelected($event)">
+           
+              </cs-ng-select>
+              <cs-ng-select 
+              [selectClass]="'js-example-disabled mb-3 form-control'"
+              [clearable]="true"
+              [multiple]="true"
+              [options]="Selection"
+              [defaultValue]="selectedMulti"
+              [searchable]="true"
+              [disabled]="disable"
+              [hideSelected]="true"
+              [placeholder]="'Selection-1'"
+              [additionalProperties]="{}"
+              (valueChange)="onCitySelected($event)">
+              </cs-ng-select>
+              <div>
+                  <button class="btn btn-primary-light js-programmatic-enable me-2"
+                      (click)="enableSelect()">Enable</button>
+                  <button class="btn btn-primary js-programmatic-disable" (click)="disableSelect()">Disable</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End:: row-2 -->

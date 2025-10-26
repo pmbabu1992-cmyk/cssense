@@ -1,0 +1,1195 @@
+<!-- Start Switcher -->
+<div #switcher class="offcanvas switcher offcanvas-end custom-lan-switcher" tabindex="-1" id="switcher-canvas"
+  aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Switcher</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="onClose()"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="">
+      <p class="switcher-style-head">Theme Color Mode:</p>
+      <div class="row switcher-style">
+        <div class="col-4">
+          <div class="form-check switch-select">
+            <label class="form-check-label" for="switcher-light-theme">
+              Light
+            </label>
+            <input class="form-check-input" type="radio" name="theme-style" id="switcher-light-theme"
+              (click)="themeChange('light', 'light')" [checked]="localdata['valexdarktheme'] != 'dark'" checked />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check switch-select">
+            <label class="form-check-label" for="switcher-dark-theme">
+              Dark
+            </label>
+            <input class="form-check-input" type="radio" name="theme-style" id="switcher-dark-theme"
+              (click)="themeChange('dark', 'dark')" [checked]="localdata['valexdarktheme'] == 'dark'" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <p class="switcher-style-head">Directions:</p>
+      <div class="row switcher-style">
+        <div class="col-4">
+          <div class="form-check switch-select">
+            <label class="form-check-label" for="myonoffswitch54"> LTR </label>
+            <input class="form-check-input" type="radio" name="direction" id="myonoffswitch54"
+              (click)="DirectionsChange('ltr')" [checked]="localdata['CS-dir'] != 'rtl'" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check switch-select">
+            <label class="form-check-label" for="myonoffswitch55"> RTL </label>
+            <input class="form-check-input" type="radio" name="direction" id="myonoffswitch55"
+              (click)="DirectionsChange('rtl')" [checked]="localdata['CS-dir'] == 'rtl'" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="theme-colors">
+      <p class="switcher-style-head">Theme Primary:</p>
+      <div class="d-flex align-items-center switcher-style">
+        <div class="form-check switch-select me-3">
+          <input class="form-check-input color-input color-primary-1" type="radio" name="theme-primary"
+            id="switcher-primary" (click)="primary('58, 88, 146')" [checked]="localdata['CS-primary-mode'] == '58, 88, 146'"  />
+        </div>
+        <div class="form-check switch-select me-3">
+          <input class="form-check-input color-input color-primary-2" type="radio" name="theme-primary"
+            id="switcher-primary1" (click)="primary('49, 176, 176')"
+            [checked]="localdata['CS-primary-mode'] == '49, 176, 176'" />
+        </div>
+        <div class="form-check switch-select me-3">
+          <input class="form-check-input color-input color-primary-3" type="radio" name="theme-primary"
+            id="switcher-primary2" (click)="primary('170, 82, 216')"
+            [checked]="localdata['CS-primary-mode'] == '170, 82, 216'" />
+        </div>
+        <div class="form-check switch-select me-3">
+          <input class="form-check-input color-input color-primary-4" type="radio" name="theme-primary"
+            id="switcher-primary3" (click)="primary('80, 198, 118')"
+            [checked]="localdata['CS-primary-mode'] == '80, 198, 118'" />
+        </div>
+        <div class="form-check switch-select me-3">
+          <input class="form-check-input color-input color-primary-5" type="radio" name="theme-primary"
+            id="switcher-primary4" (click)="primary('244, 86, 86')"
+            [checked]="localdata['CS-primary-mode'] == '244, 86, 86'" />
+        </div>
+        <div class="form-check switch-select ps-0 mt-1 color-primary-light">
+          <div class="theme-container-primary"></div>
+          <div class="pickr-container-primary">
+            <div class="pickr">
+              <button
+              type="button"
+              [class]="'pcr-button'"
+              role="button"
+              aria-label="toggle color picker dialog"
+              id="lightPrimaryColorID"
+              style="--pcr-color: rgba(132, 90, 223, 1)"
+              [style.background]="color1"
+              [cpAlphaChannel]="'disabled'"
+              [cpOutputFormat]="'hex'"
+              [(colorPicker)]="color1"
+              (cpSliderDragEnd)="dynamicLightPrimary($event)"
+            ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="switcher-style-head">reset:</p>
+      <div class="text-center">
+        <button id="reset-all" (click)="reset()" class="btn btn-danger mt-3">
+          Reset
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Switcher -->
+<div class="landing-body">
+  <div class="landing-page-wrapper">
+    <!-- app-header -->
+    <header class="app-header">
+      <!-- Start::main-header-container -->
+      <div class="main-header-container container-fluid">
+        <!-- Start::header-content-left -->
+        <div class="header-content-left">
+          <!-- Start::header-element -->
+          <div class="header-element">
+            <div class="horizontal-logo">
+              <a routerLink="/dashboard" class="header-logo">
+                <img src="./assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo" />
+                <img src="./assets/images/brand-logos/toggle-white.png" alt="logo" class="toggle-white" />
+              </a>
+            </div>
+          </div>
+          <!-- End::header-element -->
+
+          <!-- Start::header-element -->
+          <div class="header-element">
+            <!-- Start::header-link -->
+            <a (click)="toggleSidebar()" href="javascript:void(0);" class="sidemenu-toggle header-link"
+              data-bs-toggle="sidebar">
+              <span class="open-toggle">
+                <i class="ri-menu-3-line fs-20"></i>
+              </span>
+            </a>
+            <!-- End::header-link -->
+          </div>
+          <!-- End::header-element -->
+        </div>
+        <!-- End::header-content-left -->
+
+        <!-- Start::header-content-right -->
+        <div class="header-content-right">
+          <!-- Start::header-element -->
+          <div class="header-element align-items-center">
+            <!-- Start::header-link|switcher-icon -->
+            <div class="btn-list d-lg-none d-block">
+              <a routerLink="/custompages/sign-up" class="btn btn-primary-light">
+                Sign Up
+              </a>
+              <button (click)="toggleSwitcher()" class="btn btn-icon btn-primary" data-bs-toggle="offcanvas"
+                data-bs-target="#switcher-canvas">
+                <i class="fe fe-settings align-middle"></i>
+              </button>
+            </div>
+            <!-- End::header-link|switcher-icon -->
+          </div>
+          <!-- End::header-element -->
+        </div>
+        <!-- End::header-content-right -->
+      </div>
+      <!-- End::main-header-container -->
+    </header>
+    <!-- /app-header -->
+
+    <!-- Start::app-sidebar -->
+    <aside [ngClass]="{ 'data-toggled': isDataToggled }" class="app-sidebar sticky" id="sidebar"
+      [ngClass]="{ 'sticky-pin': scrolled }" style="margin-bottom: -64px">
+      <div class="container p-0">
+        <!-- Start::main-sidebar -->
+        <div class="main-sidebar">
+          <!-- Start::nav -->
+          <nav class="main-menu-container nav nav-pills sub-open">
+            <div class="landing-logo-container">
+              <div class="horizontal-logo">
+                <a routerLink="/dashboard" class="header-logo">
+                  <img src="./assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo" />
+                  <img src="./assets/images/brand-logos/desktop-white.png" alt="logo" class="desktop-white" />
+                </a>
+              </div>
+            </div>
+            <ul class="main-menu">
+              <!-- Start::slide -->
+              <li class="slide">
+                <a class="side-menu__item" href="javascript:void(0);" (click)="scroll(home)" value="home"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label">Home</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+              <!-- Start::slide -->
+              <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(features)" value="features" data-bs-toggle="slide"
+                  class="side-menu__item">
+                  <span class="side-menu__label">Features</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+              <!-- Start::slide -->
+              <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(about)" value="about" class="side-menu__item"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label">About</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+              <!-- Start::slide -->
+              <li class="slide has-sub" #dropmenu id="dropmenu" [ngClass]="expande ? 'open' : ''">
+                <a href="javascript:void(0);" (click)="toggleExpand()" value="statistics" class="side-menu__item"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label me-2">More</span>
+                  <i class="fe fe-chevron-right side-menu__angle op-8"></i>
+                </a>
+                <ul class="slide-menu child1" [class.active]="expande">
+                  <li class="slide">
+                    <a href="javascript:void(0);" (click)="scroll(statistics)" value="statistics"
+                      class="side-menu__item" data-bs-toggle="slide">Statistics</a>
+                  </li>
+                  <li class="slide has-sub">
+                    <a (click)="expande1 = !expande1" href="javascript:void(0);" class="side-menu__item"
+                      data-bs-toggle="slide">Level-2
+                      <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                    <ul [class.open]="expande1" class="slide-menu child2">
+                      <li class="slide">
+                        <a href="javascript:void(0);" class="side-menu__item" data-bs-toggle="slide">Level-2-1</a>
+                      </li>
+                      <li class="slide has-sub">
+                        <a (click)="expande2 = !expande2" href="javascript:void(0);" class="side-menu__item"
+                          data-bs-toggle="slide">Level-2-2
+                          <i class="fe fe-chevron-right side-menu__angle"></i></a>
+                        <ul [class.open]="expande2" class="slide-menu child3">
+                          <li class="slide">
+                            <a href="javascript:void(0);" class="side-menu__item text-nowrap" data-bs-toggle="slide">Level-2-2-1</a>
+                          </li>
+                          <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item" data-bs-toggle="slide">Level-2-2-2</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <!-- End::slide -->
+                 <!-- Start::slide -->
+              <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(pricing)" value="pricing" class="side-menu__item"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label">Pricing</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+               <!-- Start::slide -->
+              <!-- <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(testimonials)" value="testimonials"
+                  class="side-menu__item" data-bs-toggle="slide">
+                  <span class="side-menu__label">Testimonials</span>
+                </a>
+              </li> -->
+              <!-- End::slide -->
+              <!-- Start::slide -->
+              <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(faq)" value="faq" class="side-menu__item"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label">Faq's</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+              
+              <!-- Start::slide -->
+              <li class="slide">
+                <a href="javascript:void(0);" (click)="scroll(contact)" value="contact" class="side-menu__item"
+                  data-bs-toggle="slide">
+                  <span class="side-menu__label">Contact</span>
+                </a>
+              </li>
+              <!-- End::slide -->
+            </ul>
+            <div class="d-lg-flex d-none">
+              <div class="btn-list d-lg-flex d-none mt-lg-2 mt-xl-0 mt-0 custom-lan">
+                <a routerLink="/custompages/sign-up" class="btn btn-wave btn-primary">
+                  Sign Up
+                </a>
+                <button (click)="toggleSwitcher()" class="btn btn-wave btn-icon btn-light" data-bs-toggle="offcanvas"
+                  data-bs-target="#switcher-canvas">
+                  <i class="fe fe-settings align-middle"></i>
+                </button>
+              </div>
+            </div>
+          </nav>
+          <!-- End::nav -->
+        </div>
+        <!-- End::main-sidebar -->
+      </div>
+    </aside>
+    <!-- End::app-sidebar -->
+
+    <!-- Start::app-content -->
+    <div (click)="bodyclick()" class="main-content landing-main">
+      <!-- Start:: Section-1 -->
+      <div class="landing-banner" id="home" #home>
+        <section class="section">
+          <div class="container main-banner-container">
+            <div class="row justify-content-center text-center">
+              <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-8">
+                <div class="py-5 pb-lg-0">
+                  <div class="mb-3">
+                    <h5 class="fw-semibold text-fixed-white op-9">
+                      Manage Your Business
+                    </h5>
+                  </div>
+                  <p class="landing-banner-heading mb-3">
+                    Build Your Dream Project with CS !
+                  </p>
+                  <div class="fs-16 mb-5 text-fixed-white op-7">
+                    CS - Now you can use this admin template to design
+                    stunning dashboards that will wow your target viewers or
+                    users to no end. To create a good and well-structured
+                    dashboard, you need to start from scratch with Angular, SCSS , Ng-Bootstrap and TS and with lots of
+                    coding, but by using this
+                    CS-Admin template.
+                  </div>
+                  <a routerLink="/dashboard" class="m-1 btn btn-primary">
+                    Discover More
+                    <i class="fe fe-eye ms-2 align-middle"></i>
+                  </a>
+                  <a routerLink="/dashboard" class="m-1 btn btn-info">
+                    Get Started
+                    <i class="fe fe-arrow-right ms-2 align-middle"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <!-- End:: Section-1 -->
+
+      <!-- Start:: Section-2 -->
+      <section class="section section-bg" id="features" #features>
+        <div class="container text-center position-relative">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading">Features</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2">CS Main Features</h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-7">
+              <p class="text-muted fs-15 mb-5 fw-normal">
+                We are proud to have top class clients and customers,which
+                motivates us to work more on projects.
+              </p>
+            </div>
+          </div>
+          <div class="row g-2 justify-content-center">
+            <div class="col-xl-12">
+              <div class="row justify-content-evenly">
+                @for (item of cards; track $index) {
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                  <cs-landing-card1 [title]="item.title" [icon]="item.icon" [description]="item.description">
+                  </cs-landing-card1>
+                </div>
+                }
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-2 -->
+
+      <!-- Start:: Section-3 -->
+      <section class="section landing-Features">
+        <div class="container text-center">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading text-fixed-white">Features</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2 text-fixed-white">
+            Features Used in CS
+          </h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-7">
+              <p class="text-fixed-white op-8 fs-15 mb-3 fw-normal">
+                Some of the reviews our clients gave which brings motivation to
+                work for future projects.
+              </p>
+            </div>
+          </div>
+          <div class="text-start">
+            <div class="justify-content-center">
+              <div class="">
+                <div class="feature-logos mt-sm-5 flex-wrap">
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/1.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">NgBootstrap</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/6.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">Angular</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/3.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">Sass</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/4.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">Gulp</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/5.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">NPM</h5>
+                  </div>
+                  <div class="ms-sm-5 ms-2 text-center">
+                    <img src="./assets/images/media/landing/web/7.png" alt="image" class="featur-icon" />
+                    <h5 class="mt-3 text-fixed-white">TypeScript</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination mt-4"></div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-3 -->
+
+      <!-- Start:: Section-4 -->
+      <section class="section" id="about" #about>
+        <div class="container text-center">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading">Our Mission</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2">
+            Our mission is to make work meaningful.
+          </h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-7">
+              <p class="text-muted fs-15 mb-3 fw-normal">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut est
+                dui, rutrum in nulla eu,
+              </p>
+            </div>
+          </div>
+          <div class="row justify-content-center align-items-center mx-0">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 text-center text-lg-start">
+              <img src="./assets/images/media/pngs/9.png" alt="" class="img-fluid" />
+            </div>
+            <div class="col-xxl-8 col-xl-7 col-lg-7 pt-5 pb-0 px-lg-2 px-5 text-start">
+              <h4 class="text-lg-start fw-medium mb-4">
+                We are a creative agency with a passion for design.
+              </h4>
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <div class="d-flex mb-2">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-medium mb-0">Quality & Clean Code</h6>
+                      <p class="text-muted mb-3">
+                        The CS admin code is maintained very cleanly and
+                        well-structured with proper comments.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12">
+                  <div class="d-flex mb-2">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-medium mb-0">Well Documented</h6>
+                      <p class="text-muted mb-3">
+                        The documentation provides clear-cut material for the
+                        CS admin template. The documentation is explained or
+                        instructed in such a way that every user can understand.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-12">
+                  <div class="d-flex mb-2">
+                    <span>
+                      <i class="bx bxs-badge-check text-primary fs-18"></i>
+                    </span>
+                    <div class="ms-2">
+                      <h6 class="fw-medium mb-0">
+                        Switch Easily From One Color to Another Color style
+                      </h6>
+                      <p class="text-muted">
+                        lorem ipsum, dolor sit var ameto condesetrat aiatel
+                        varen or damsenlel verman code Lorem ipsum, dolor sit
+                        amet consectetur
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-4 -->
+
+      <!-- Start:: Section-5 -->
+      <section class="section section-bg" id="statistics" #statistics>
+        <div class="container text-center">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading">Statistics</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2">More than 120+ projects completed.</h3>
+          <div class="row justify-content-center mb-5">
+            <div class="col-xl-7">
+              <p class="text-muted fs-15mb-0 fw-normal">
+                We are proud to have top class clients and customers,which
+                motivates us to work more on projects.
+              </p>
+            </div>
+          </div>
+          <div class="row g-2 justify-content-center">
+            <div class="col-xl-12">
+              <div class="row justify-content-evenly">
+                @for (card of cards2; track $index) {
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-3">
+                <cs-landing-card2
+                  [title]="card.title"
+                  [icon]="card.icon"
+                  [count]="card.count"
+                  [description]="card.description">
+                </cs-landing-card2>
+                </div>
+              }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-5 -->
+
+      <!-- Start:: Section-6 -->
+      <section class="section" id="pricing" #pricing>
+        <div class="container">
+          <p class="fs-12 fw-semibold text-success mb-1 text-center">
+            <span class="landing-section-heading">PRICING</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2 text-center">
+            CS comes with most affordable pricing range.
+          </h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-9">
+              <p class="text-muted fs-15 mb-5 fw-normal">
+                Our plans are most affordable and are mainly placed by focussing
+                every category in the sector even basic plan helps better.
+              </p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center mb-4">
+            <ul ngbNav #nav="ngbNav" class="nav nav-tabs mb-3 tab-style-6 bg-primary-transparent" id="myTab"
+              role="tablist">
+              <li [ngbNavItem]="1" class="nav-item" role="presentation">
+                <button ngbNavLink class="nav-link" id="pricing-monthly" data-bs-toggle="tab"
+                  data-bs-target="#pricing-monthly-pane" type="button" role="tab" aria-controls="pricing-monthly-pane"
+                  aria-selected="true">
+                  Monthly
+                </button>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane border-0 show active p-0" id="pricing-monthly-pane" role="tabpanel"
+                    aria-labelledby="pricing-monthly" tabindex="0">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card p-3 border-primary pricing-card advanced shadow-none">
+                          <div class="p-4 bg-primary rounded-3 d-block text-justified pt-2 text-fixed-white">
+                            <p class="fs-18 fw-semibold mb-1 pe-0">
+                              Advanced<span
+                                class="badge bg-white text-primary float-end font-weight-normal fs-11">Limited
+                                Deal</span>
+                            </p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">199</span><span
+                                class="fs-13"><span class="op-5 text-fixed-white text-20">/</span>
+                                month</span>
+                            </p>
+                            <p class="fs-13 mb-2">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-fixed-white op-7">
+                              Billed monthly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 list-unstyled mt-3">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>
+                                <strong> 5 Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>5
+                                </strong> One-Click Apps
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong> 3
+                                </strong> Databases
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  Unlimited </strong> Cloud Storage
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  Money </strong> BackGuarantee
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  24/7</strong> support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-primary w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card p-3 pricing-card shadow-none">
+                          <div class="card-header d-block text-justified pt-2">
+                            <p class="fs-18 fw-semibold mb-1">Basic</p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">39</span><span
+                                class="fs-13"><span class="op-0-5 text-muted text-20">/</span>
+                                month</span>
+                            </p>
+                            <p class="fs-13 mb-1">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-secondary">
+                              Billed monthly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 mt-3 list-unstyled">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline me-2 fs-16 text-secondary"></i><strong>
+                                  2 Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline me-2 fs-16 text-secondary"></i>
+                                <strong>3 </strong> One-Click Apps
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> 1 </strong>
+                                Databases
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> Unlimited
+                                </strong> Cloud Storage
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> Money
+                                </strong> BackGuarantee
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> 24/7</strong>
+                                support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-outline-info w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card p-3 pricing-card shadow-none">
+                          <div class="card-header d-block text-justified pt-2">
+                            <p class="fs-18 fw-semibold mb-1">Regular</p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">69</span><span
+                                class="fs-13"><span class="op-0-5 text-muted text-20">/</span>
+                                month</span>
+                            </p>
+                            <p class="fs-13 mb-1">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-danger">
+                              Billed monthly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 mt-3 list-unstyled">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong> 1
+                                  Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong>4
+                                </strong> One-Click Apps
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong> 2
+                                </strong> Databases
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> Unlimited
+                                </strong> Cloud Storage
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> Money
+                                </strong> BackGuarantee
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> 24/7</strong>
+                                support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-outline-info w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2" class="nav-item" role="presentation">
+                <button ngbNavLink class="nav-link" id="pricing-yearly" data-bs-toggle="tab"
+                  data-bs-target="#pricing-yearly-pane" type="button" role="tab" aria-controls="pricing-yearly-pane"
+                  aria-selected="false">
+                  Yearly
+                </button>
+                <ng-template ngbNavContent>
+                  <div class="tab-pane border-0 p-0" id="pricing-yearly-pane" role="tabpanel"
+                    aria-labelledby="pricing-yearly" tabindex="0">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card p-3 border border-primary pricing-card advanced reveal revealrotate shadow-none">
+                          <div class="p-4 bg-primary rounded-3 d-block text-justified pt-2 text-fixed-white">
+                            <p class="fs-18 fw-semibold mb-1 pe-0">
+                              Advanced<span
+                                class="badge bg-white text-primary float-end font-weight-normal fs-11">Limited
+                                Deal</span>
+                            </p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">1,299</span><span
+                                class="fs-13"><span class="op-5 text-fixed-white text-20">/</span>
+                                year</span>
+                            </p>
+                            <p class="fs-13 mb-2">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-fixed-white op-7">More than 120+ projects completed.
+                              Billed monthly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 mt-3 list-unstyled">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i>
+                                <strong> 5 Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>5
+                                </strong> One-Click Apps
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong> 3
+                                </strong> Databases
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  Unlimited </strong> Cloud Storage
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  Money </strong> BackGuarantee
+                              </li>
+                              <li class="">
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-primary fs-16 me-2"></i><strong>
+                                  24/7</strong> support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-primary w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card border p-3 pricing-card reveal revealrotate shadow-none">
+                          <div class="card-header d-block text-justified pt-2">
+                            <p class="fs-18 fw-semibold mb-1">Basic</p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">399</span><span
+                                class="fs-13"><span class="op-0-5 text-muted text-20">/</span>
+                                year</span>
+                            </p>
+                            <p class="fs-13 mb-1">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-secondary">
+                              Billed Yearly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 mt-3 list-unstyled">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline me-2 fs-16 text-secondary"></i><strong>
+                                  2 Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline me-2 fs-16 text-secondary"></i>
+                                <strong>3 </strong> One-Click Apps
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> 1 </strong>
+                                Databases
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> Unlimited
+                                </strong> Cloud Storage
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> Money
+                                </strong> BackGuarantee
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline me-2 fs-16 text-gray"></i><strong> 24/7</strong>
+                                support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-outline-info w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-xl-4 col-md-8 col-sm-12">
+                        <div class="card border p-3 pricing-card reveal revealrotate shadow-none">
+                          <div class="card-header d-block text-justified pt-2">
+                            <p class="fs-18 fw-semibold mb-1">Regular</p>
+                            <p class="text-justify fw-semibold mb-1">
+                              <span class="fs-15 me-2">$</span><span class="fs-22 me-1">899</span><span
+                                class="fs-13"><span class="op-0-5 text-muted text-20">/</span>
+                                year</span>
+                            </p>
+                            <p class="fs-13 mb-1">
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Iure quos debitis aliquam .
+                            </p>
+                            <p class="fs-13 mb-1 text-danger">
+                              Billed Yearly on regular basis!
+                            </p>
+                          </div>
+                          <div class="card-body pt-2">
+                            <ul class="text-justify pricing-body ps-0 mt-3 list-unstyled">
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong> 1
+                                  Free</strong> Domain Name
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong>4
+                                </strong> One-Click Apps
+                              </li>
+                              <li>
+                                <i class="mdi mdi-checkbox-marked-circle-outline text-danger me-2 fs-16"></i><strong> 2
+                                </strong> Databases
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> Unlimited
+                                </strong> Cloud Storage
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> Money
+                                </strong> BackGuarantee
+                              </li>
+                              <li class="text-muted">
+                                <i class="mdi mdi-close-circle-outline text-gray me-2 fs-16"></i><strong> 24/7</strong>
+                                support
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="card-footer text-center border-top-0 py-0">
+                            <button class="btn btn-outline-info w-100">
+                              <span class="ms-4 me-4">Select</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </li>
+            </ul>
+          </div>
+          <div class="card custom-card overflow-hidden shadow-none border-0">
+            <div class="card-body p-0">
+              <div class="tab-content chat-tab" id="myTabContent" [ngbNavOutlet]="nav"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-6 -->
+      <!-- Start:: Section-8 -->
+      <section class="section" id="faq" #faq>
+        <div class="container text-center">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading">F.A.Q</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2">Frequently asked questions ?</h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-7">
+              <p class="text-muted fs-15 mb-5 fw-normal">
+                We have shared some of the most frequently asked questions to
+                help you out.
+              </p>
+            </div>
+          </div>
+          <div class="row text-start">
+            <div class="col-xl-12">
+              <div class="row gy-2">
+                <div class="col-xl-6">
+                  <app-ngb-accordion [accordionId]="'accordionExample'" [accodionClass]="'accordion accordion-customicon1 accordion-primary accordions-items-seperate'" [closeOthers]="true" [accordionItems]="basicAccordions"></app-ngb-accordion>
+                 </div>
+                 <div class="col-xl-6">
+                  <app-ngb-accordion [accordionId]="'accordionExample'" [accodionClass]="'accordion accordion-customicon1 accordion-primary accordions-items-seperate'" [closeOthers]="true" [accordionItems]="basicAccordions1"></app-ngb-accordion>
+                 
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-8 -->
+
+      <!-- Start:: Section-9 -->
+      <section class="section section-bg" id="contact" #contact>
+        <div class="container text-center">
+          <p class="fs-12 fw-semibold text-success mb-1">
+            <span class="landing-section-heading">CONTACT US</span>
+          </p>
+          <div class="landing-title"></div>
+          <h3 class="fw-semibold mb-2">
+            Have any questions ? We would love to hear from you.
+          </h3>
+          <div class="row justify-content-center">
+            <div class="col-xl-9">
+              <p class="text-muted fs-15 mb-5 fw-normal">
+                You can contact us anytime regarding any queries or deals,dont
+                hesitate to clear your doubts before trying our product.
+              </p>
+            </div>
+          </div>
+          <div class="text-start row justify-content-between">
+            <div class="col-lg-4">
+              <div class="card shadow-none">
+                <div class="card-body px-5 py-4">
+                  <div class="d-flex mb-3 mt-2">
+                    <div class="contact-icon border bg-primary-transparent m-0">
+                      <i class="fe fe-map-pin text-primary fs-17"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                      <h6 class="mb-1 fw-medium">Main Branch</h6>
+                      <p>San Francisco, CA</p>
+                    </div>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <div class="contact-icon border bg-danger-transparent">
+                      <i class="fe fe-mail text-danger fs-17"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                      <h6 class="mb-1 fw-medium">Email</h6>
+                      <p>georgeme&#64;abc.com</p>
+                    </div>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <div class="contact-icon border bg-success-transparent">
+                      <i class="fe fe-headphones text-success fs-17"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                      <h6 class="mb-1 fw-medium">Contact</h6>
+                      <p>+125 254 3562</p>
+                    </div>
+                  </div>
+                  <div class="d-flex mb-2">
+                    <div class="contact-icon border bg-warning-transparent">
+                      <i class="fe fe-airplay text-warning fs-17"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                      <h6 class="mb-1 fw-medium">Working Hours</h6>
+                      <p class="mb-0">Mon - Fri: 9am - 6pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card shadow-none">
+                <div class="card-body px-5 pt-4">
+                  <div class="row mt-1">
+                    <div class="col-xl-6">
+                      <div class="form-group">
+                        <label for="cusName" class="form-label">Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="cusName" placeholder="Enter your name" />
+                      </div>
+                    </div>
+                    <div class="col-xl-6">
+                      <div class="form-group">
+                        <label for="cusEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="cusEmail" placeholder="Enter your email" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="cusMessage" class="form-label">Message <span class="text-danger">*</span></label>
+                    <textarea rows="4" class="form-control" id="cusMessage"
+                      placeholder="Type your message here..."></textarea>
+                  </div>
+                  <div class="form-group mb-2 pt-1">
+                    <button class="btn btn-primary">Send Message</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-9 -->
+
+      <!-- Start:: Section-10 -->
+      <section class="section landing-footer text-fixed-white">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4">
+              <div class="px-4">
+                <p class="fw-semibold mb-3">
+                  <a routerLink="/dashboard"><img src="./assets/images/brand-logos/desktop-white.png" alt=""
+                      class="logo-img" /></a>
+                </p>
+                <p class="mb-3 op-6 fw-normal">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Reprehenderit et magnam, fuga est mollitia eius, quo illum
+                  illo inventore optio aut quas omnis rem. Dolores accusantium
+                  aspernatur minus ea incidunt.
+                </p>
+                <div class="input-group">
+                  <input type="text" class="form-control bg-transparent text-fixed-white" placeholder="Enter your email"
+                    aria-label="Example text with button addon" aria-describedby="button-addon2" />
+                  <button class="btn btn-primary" type="button" id="button-addon2">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2">
+              <div class="px-4">
+                <h6 class="fw-semibold mb-3 text-fixed-white">Pages</h6>
+                <ul class="list-unstyled fw-normal landing-footer-list">
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Email</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Profile</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Timeline</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Projects</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Contacts</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Portfolio</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2">
+              <div class="px-4">
+                <h6 class="fw-semibold text-fixed-white">Information</h6>
+                <ul class="list-unstyled fw-normal landing-footer-list">
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Our Team</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Contact US</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">About</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Services</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Blog</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6">Terms & Conditions</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-4">
+              <div class="px-4">
+                <h6 class="fw-semibold text-fixed-white">Contact</h6>
+                <ul class="list-unstyled fw-normal landing-footer-list">
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6"><i
+                        class="ri-home-4-line me-1 align-middle"></i> New
+                      York, NY 10012, US</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6"><i
+                        class="ri-mail-line me-1 align-middle"></i>
+                      info&#64;fmail.com</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6"><i
+                        class="ri-phone-line me-1 align-middle"></i>
+                      +(555)-1920 1831</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);" class="text-fixed-white op-6"><i
+                        class="ri-printer-line me-1 align-middle"></i> +(123)
+                      1293 123</a>
+                  </li>
+                  <li class="mt-3">
+                    <p class="mb-2 fw-semibold op-8">FOLLOW US ON :</p>
+                    <div class="mb-0">
+                      <div class="btn-list">
+                        <button class="btn btn-sm btn-icon btn-wave waves-effect waves-light">
+                          <i class="ri-facebook-line fw-bold"></i>
+                        </button>
+                        <button class="btn btn-sm btn-icon btn-wave waves-effect waves-light">
+                          <i class="ri-twitter-x-fill fw-bold"></i>
+                        </button>
+                        <button class="btn btn-sm btn-icon btn-wave waves-effect waves-light">
+                          <i class="ri-instagram-line fw-bold"></i>
+                        </button>
+                        <button class="btn btn-sm btn-icon btn-wave waves-effect waves-light">
+                          <i class="ri-github-line fw-bold"></i>
+                        </button>
+                        <button class="btn btn-sm btn-icon btn-wave waves-effect waves-light">
+                          <i class="ri-youtube-line fw-bold"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End:: Section-10 -->
+
+      <div class="text-center landing-main-footer py-3">
+        <span class="text-muted fs-15 me-1">
+          Copyright © <span id="year">2025</span>
+          <a href="javascript:void(0);" class="text-primary ms-1 fw-semibold"><u>CS</u></a>. Designed with <span
+            class="fa fa-heart text-danger"></span> by
+          <a href="javascript:void(0);" class="text-primary fw-semibold"><u> Spruko</u>
+          </a>
+          All rights reserved
+        </span>
+      </div>
+    </div>
+    <!-- End::app-content -->
+  </div>
+  <app-tap-to-top></app-tap-to-top>
+</div>

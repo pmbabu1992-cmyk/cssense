@@ -1,0 +1,36 @@
+/* optional; only if you want a class instead of inline style */
+.offline-icon { font-size: 2rem; opacity: .6; }
+/* Keep p-badge inline in cards (your theme likely sets overlay styles) */
+:host ::ng-deep .p-badge.p-badge-static {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  margin-left: .125rem;
+  line-height: 1; /* tidier */
+}
+
+/* Icon + corner pill container */
+.icon-badges {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  width: 24px;  /* match bell size */
+  height: 24px;
+}
+.icon-badges .icon,
+.icon-badges i { font-size: 1.25rem; }
+
+.icon-badges .badge {
+  position: absolute;
+  top: -2px;
+  right: -6px;
+  transform: translate(50%, -50%);
+  padding: 0.25rem 0.45rem;
+  font-weight: 600;
+}
+
+
+// search
+

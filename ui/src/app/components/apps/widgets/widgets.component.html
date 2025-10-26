@@ -1,0 +1,1147 @@
+<!-- Page Header -->
+<app-page-header
+  [title]="'Widgets'"
+  [items]="['Apps']"
+  [active_item]="'Widgets'"
+/>
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  @for (card of cards; track $index) {
+  <div class="col-lg-6 col-xl-3 col-md-6 col-12">
+    <cs-widget-card1
+      [icon]="card.icon"
+      [title]="card.title"
+      [value]="card.value"
+      [bgColor]="card.bgColor"
+    >
+    </cs-widget-card1>
+  </div>
+  }
+</div>
+<!-- End::row-1 -->
+
+<!-- Start::row-2 -->
+<div class="row">
+  @for (card of cards1; track $index) {
+  <div class="col-sm-12 col-lg-6 col-xl-3">
+    <cs-widget-card2
+      [icon]="card.icon"
+      [title]="card.title"
+      [value]="card.value"
+      [footerText]="card.footerText"
+      [footerIcon]="card.footerIcon"
+      [footerIconColor]="card.footerIconColor"
+    >
+    </cs-widget-card2>
+  </div>
+  } @for (user of users; track $index) {
+  <div class="col-sm-12 col-xxl-4 col-xl-6 col-lg-12">
+    <cs-widget-card3
+      [name]="user.name"
+      [role]="user.role"
+      [imageUrl]="user.imageUrl"
+      [sales]="user.sales"
+      [followers]="user.followers"
+      [products]="user.products"
+      [bgColor]="user.bgColor"
+    >
+    </cs-widget-card3>
+  </div>
+  }
+</div>
+<!-- End::row-2 -->
+<!-- Start::row-3 -->
+<div class="row">
+  @for (card of cards2; track $index) {
+  <div class="col-sm-12 col-lg-6">
+    <cs-widget-card4
+      [title]="card.title"
+      [description]="card.description"
+      [todayValue]="card.todayValue"
+      [weekValue]="card.weekValue"
+      [monthValue]="card.monthValue"
+      [progressPercentage]="card.progressPercentage"
+      [progressBarClass]="card.progressBarClass"
+    >
+    </cs-widget-card4>
+  </div>
+  }
+</div>
+<!-- End::row-3 -->
+
+<!-- Start::row-4 -->
+<div class="row">
+  <!-- col -->
+  <div class="col-lg-4 col-md-4">
+    <div class="card bg-primary-gradient">
+      <div class="card-body">
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            @if (data1) {
+            <ngb-carousel
+              [interval]="3400"
+              [showNavigationArrows]="false"
+              [showNavigationIndicators]="false"
+            >
+              @for (data of data1; track data) {
+              <ng-template ngbSlide>
+                <div class="carousel-item active flex-column">
+                  <i
+                    class="{{ data.icon }} fs-30 text-fixed-white mb-2"
+                  ></i>
+                  <p class="text-fixed-white mt-2">{{ data.date }}</p>
+                  <h4 class="text-fixed-white">
+                    Now Get <span class="font-bold">{{ data.offer }}</span
+                    ><br />on buy
+                  </h4>
+                  <div class="text-fixed-white m-t-20">
+                    <i>- {{ data.name }}</i>
+                  </div>
+                </div>
+              </ng-template>
+              }
+            </ngb-carousel>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- col -->
+  <div class="col-lg-4 col-md-4">
+    <div class="card bg-danger-gradient">
+      <div class="card-body">
+        <div id="myCarousel0" class="carousel slide" data-bs-ride="carousel">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            @if (data2) {
+            <ngb-carousel
+              [interval]="4000"
+              [showNavigationArrows]="false"
+              [showNavigationIndicators]="false"
+            >
+              @for (data of data2; track data) {
+              <ng-template ngbSlide>
+                <div class="carousel-item active flex-column">
+                  <i
+                    class="{{ data.icon }} fs-30 text-fixed-white mb-2"
+                  ></i>
+                  <p class="text-fixed-white mt-2">{{ data.date }}</p>
+                  <h4 class="text-fixed-white">
+                    Now Get <span class="font-bold">{{ data.offer }}</span
+                    ><br />on buy
+                  </h4>
+                  <div class="text-fixed-white m-t-20">
+                    <i>-{{ data.name }}</i>
+                  </div>
+                </div>
+              </ng-template>
+              }
+            </ngb-carousel>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- col -->
+  <div class="col-lg-4 col-md-4">
+    <div class="card bg-purple-gradient">
+      <div class="card-body">
+        <div id="myCarousel1" class="carousel slide" data-bs-ride="carousel">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            @if (data3) {
+            <ngb-carousel
+              [interval]="3000"
+              [showNavigationArrows]="false"
+              [showNavigationIndicators]="false"
+            >
+              @for (data of data3; track data) {
+              <ng-template ngbSlide>
+                <div class="carousel-item active flex-column">
+                  <i
+                    class="{{ data.icon }} fs-30 text-fixed-white mb-2"
+                  ></i>
+                  <p class="text-fixed-white mt-2">{{ data.date }}</p>
+                  <h4 class="text-fixed-white">
+                    Now Get <span class="font-bold">{{ data.offer }}</span
+                    ><br />on buy
+                  </h4>
+                  <div class="text-fixed-white m-t-20">
+                    <i>- {{ data.name }}</i>
+                  </div>
+                </div>
+              </ng-template>
+              }
+            </ngb-carousel>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End::row-4 -->
+
+<!-- Start::row-5 -->
+<div class="row">
+  @for (card of cards3; track $index) {
+  <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
+    <cs-widget-card5
+      [title]="card.title"
+      [value]="card.value"
+      [percentage]="card.percentage"
+      [progressPercentage]="card.progressPercentage"
+      [progressBarClass]="card.progressBarClass"
+      [iconClass]="card.iconClass"
+      [iconColorClass]="card.iconColorClass"
+      [description]="card.description"
+    >
+    </cs-widget-card5>
+  </div>
+  }
+</div>
+<!-- End::row-5 -->
+
+<!-- Start::row-6 -->
+<div class="row">
+  @for (card of cards5; track $index) {
+  <div class="col-sm-12 col-md-6 col-lg-6 col-xxl-3">
+    <cs-widget-card6
+      [title]="card.title"
+      [value]="card.value"
+      [iconClass]="card.iconClass"
+      [percentage]="card.percentage"
+      [percentageColorClass]="card.percentageColorClass"
+      [subTitle]="card.subTitle"
+      [subValue]="card.subValue"
+    >
+    </cs-widget-card6>
+  </div>
+  }
+</div>
+<!-- End::row-6 -->
+<!-- Start::row-7 -->
+<div class="row">
+  @for (card of cards4; track $index) {
+  <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12">
+    <cs-widget-card5
+      [title]="card.title"
+      [value]="card.value"
+      [percentage]="card.percentage"
+      [progressPercentage]="card.progressPercentage"
+      [progressBarClass]="card.progressBarClass"
+      [iconClass]="card.iconClass"
+      [iconColorClass]="card.iconColorClass"
+      [description]="card.description"
+    >
+    </cs-widget-card5>
+  </div>
+  }
+</div>
+<!-- End::row-7 -->
+
+<!-- Start::row-8 -->
+<div class="row">
+  @for ( card of cards6; track $index) {
+  <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-6">
+    <cs-widget-card7
+      [title]="card.title"
+      [value]="card.value"
+      [iconClass]="card.iconClass"
+      [bgColorClass]="card.bgColorClass"
+      [iconColorClass]="card.iconColorClass"
+    >
+    </cs-widget-card7>
+  </div>
+  }
+</div>
+
+<!-- End::row-8 -->
+
+<!-- Start::row-9 -->
+<div class="row">
+  <div class="col-md-12 col-xl-4">
+    <div class="card">
+      <div class="card-body p-0">
+        <div class="card-header pb-1">
+          <div class="d-flex justify-content-between">
+            <h4 class="card-title">Active Projects</h4>
+            <div class="dropdown-menu dropdown-menu-end">
+              <a class="dropdown-item" href="javascript:void(0);">Action</a>
+              <a class="dropdown-item" href="javascript:void(0);"
+                >Another Action</a
+              >
+              <a class="dropdown-item" href="javascript:void(0);"
+                >Something Else Here</a
+              >
+            </div>
+          </div>
+          <p class="card-description mb-2">What're people doing right now</p>
+        </div>
+        @for (project of projects; track $index) {
+        <div>
+          <div class="list d-flex align-items-center border-bottom p-3">
+            <span class="avatar avatar-md offline avatar-rounded flex-shrink-0">
+              <img [src]="project.imageUrl" alt="img" />
+            </span>
+            <div class="wrapper w-100 ms-3 m-0 p-0">
+              <p class="mb-0">
+                <b>{{ project.name }} </b>{{ project.postTitle }}
+              </p>
+              <div class="d-sm-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <i class="mdi mdi-clock text-muted me-1"></i>
+                  <p class="mb-0">{{ project.postContent }}</p>
+                </div>
+                <small class="text-muted ms-auto">{{ project.timeAgo }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-xl-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Business Team</h3>
+      </div>
+      <div class="card-body pb-0">
+        <div class="chips">
+          @for (member of teamMembers; track $index) {
+          <div class="team">
+            <a href="javascript:void(0);" class="chip">
+              <span class="avatar avatar-rounded flex-shrink-0">
+                <img [src]="member.imageUrl" alt="img" />
+              </span>
+              {{ member.name }}
+            </a>
+            <i
+              class="ri-facebook-circle-fill text-primary float-end"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="ri-twitter-x-fill text-primary float-end"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="ri-mail-fill text-primary float-end"
+              aria-hidden="true"
+            ></i>
+            <p>{{ member.description }}</p>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-xl-4">
+    <div class="card">
+      <div class="card-header border-bottom-0 pb-0">
+        <h3 class="card-title">Top Countries</h3>
+      </div>
+      <div class="card-body p-0">
+        <cs-reusable-tables tableClass=" table card-table country-table mb-0">
+          @for (country of countries; track $index) {
+          <tr>
+            <td class="w-1 ps-4">
+              <img
+                [src]="country.flagUrl"
+                alt="flags"
+                class="flag wd-30 ht-20 flag-us mt-1"
+              />
+            </td>
+            <td>
+              {{ country.name }}
+              <div
+                class="progress progress-xs mt-1"
+                role="progressbar"
+                [attr.aria-valuenow]="country.progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <div
+                  class="progress-bar"
+                  [ngClass]="country.progressColor"
+                  [style.width.%]="country.progress"
+                ></div>
+              </div>
+            </td>
+            <td class="text-end">
+              <span class="text-muted">{{ country.amount }}</span>
+            </td>
+          </tr>
+          }
+        </cs-reusable-tables>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End::row-9 -->
+
+<!-- Start::row-10 -->
+<div class="row">
+  <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+        <div ngbDropdown class="d-flex justify-content-between">
+          <h4 class="card-title mg-b-10">Overall Rating</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 border-0 border-0'"
+            [Menuclass]="'dropdown-menu'">
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+        <p class="fs-12 text-gray-5 mb-0">
+          Opinion of a customer on the product in the form of ratings 5-star
+          rating.
+          <a href="javascript:void(0);" class="text-primary">Learn more</a>
+        </p>
+      </div>
+      <!-- card-header -->
+      <div class="card-body pd-y-7">
+        <div class="d-flex align-items-baseline">
+          <h1 class="fs-30 mb-1 me-1">4.8</h1>
+          <p class="fs-11 mb-0">
+            <span class="text-success"
+              >1.6% <i class="icon ion-md-arrow-up"></i
+            ></span>
+          </p>
+        </div>
+        <h6 class="text-uppercase text-spacing-1 text-semibold fs-10 text-color-02 mg-b-15">Overall product rating by the customers.</h6>
+        <table class="table table-borderless mt-3 rating-table">
+          <tbody>
+            <tr>
+              <td><small>1</small></td>
+              <td>
+                <span><i class="ion ion-md-star fs-18 text-warning"></i></span>
+              </td>
+              <td class="w-100">
+                <div class="progress progress-xs mb-1" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                  <div class="progress-bar bg-danger" style="width: 25%"></div>
+                </div>
+              </td>
+              <td><small>7</small></td>
+            </tr>
+            <tr>
+              <td><small>2</small></td>
+              <td>
+                <span><i class="ion ion-md-star fs-18 text-warning"></i></span>
+              </td>
+              <td class="w-100">
+                <div
+                  class="progress progress-xs mb-1"
+                  role="progressbar"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar bg-primary" style="width: 30%"></div>
+                </div>
+              </td>
+              <td><small>27</small></td>
+            </tr>
+            <tr>
+              <td><small>3</small></td>
+              <td>
+                <span><i class="ion ion-md-star fs-18 text-warning"></i></span>
+              </td>
+              <td class="w-100">
+                <div
+                  class="progress progress-xs mb-1"
+                  role="progressbar"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar bg-warning" style="width: 60%"></div>
+                </div>
+              </td>
+              <td><small>64</small></td>
+            </tr>
+            <tr>
+              <td><small>4</small></td>
+              <td>
+                <span><i class="ion ion-md-star fs-18 text-warning"></i></span>
+              </td>
+              <td class="w-100">
+                <div
+                  class="progress progress-xs mb-1"
+                  role="progressbar"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar bg-teal" style="width: 70%"></div>
+                </div>
+              </td>
+              <td><small>93</small></td>
+            </tr>
+            <tr>
+              <td><small>5</small></td>
+              <td>
+                <span><i class="ion ion-md-star fs-18 text-warning"></i></span>
+              </td>
+              <td class="w-100">
+                <div
+                  class="progress progress-xs mb-1"
+                  role="progressbar"
+                  aria-valuenow="25"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                >
+                  <div class="progress-bar bg-success" style="width: 80%"></div>
+                </div>
+              </td>
+              <td><small>82</small></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="wrapper d-flex justify-content-center image-group pb-2 mb-0">
+          <div class="avatar-list-stacked">
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/2.jpg" alt="img" />
+            </span>
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/8.jpg" alt="img" />
+            </span>
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/2.jpg" alt="img" />
+            </span>
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/10.jpg" alt="img" />
+            </span>
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/4.jpg" alt="img" />
+            </span>
+            <span class="avatar avatar-rounded">
+              <img src="./assets/images/faces/13.jpg" alt="img" />
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- card-body -->
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+    <div class="card order-list">
+      <div class="card-body pb-0">
+        <div class="card-header p-0 d-flex justify-content-between">
+          <h4 class="card-title mg-b-10">Order Activity</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 border-0 border-0'"
+            [Menuclass]="'dropdown-menu'">
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+        <p class="fs-12 text-gray-5 mb-3">
+          Order Activity is ecommerce platforms to track the orders placed on
+          their stores
+          <a href="javascript:void(0);" class="text-primary">Learn more</a>
+        </p>
+        <ul class="list list-noborders pb-0 mb-0 list-unstyled">
+          @for (member of OrderData; track $index) {
+          <li class="list-item">
+            <img
+              class="avatar rounded-circle avatar-lg"
+              [src]="member.profileImage"
+              alt="Profile Image"
+            />
+            <div class="ms-3">
+              <h6 class="mb-1 fw-medium fs-14">{{ member.name }}</h6>
+              <p class="mb-0 text-muted fs-13">{{ member.productNumber }}</p>
+            </div>
+            <div class="ms-auto d-flex">
+              @for (image of member.images; track $index) {
+              <img
+                class="avatar rounded-2 me-1"
+                [src]="image"
+                alt="thumb images"
+              />
+              }
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-xl-4 col-md-12 col-sm-12">
+    <div class="card overflow-hidden latest-tasks">
+      <div>
+        <div
+          ngbDropdown
+          class="card-header p-0 d-flex justify-content-between px-4 pt-4"
+        >
+          <h4 class="card-title mg-b-10">Latest Task</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 border-0'"
+            [Menuclass]="'dropdown-menu'"
+          >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+        <ul
+          ngbNav
+          #nav="ngbNav"
+          class="nav nav-tabs nav-tabs-header mb-0"
+          role="tablist"
+        >
+          <li [ngbNavItem]="1" class="nav-item">
+            <a
+              ngbNavLink
+              class="nav-link"
+              data-bs-toggle="tab"
+              role="tab"
+              aria-current="page"
+              aria-selected="true"
+              >Today</a
+            >
+            <ng-template ngbNavContent>
+              <div
+                class="tab-pane border-0 p-0 show active text-muted"
+                id="tasktab-1"
+                role="tabpanel"
+              >
+                <div class="">
+                  <div class="tasks">
+                    <div class="task-line primary">
+                      <a href="javascript:void(0);" class="span">
+                        XML Import & Export
+                      </a>
+                      <div class="time">12:00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input checked type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line pink">
+                      <a href="javascript:void(0);" class="span">
+                        Database Optimization
+                      </a>
+                      <div class="time">02:13 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line success">
+                      <a href="javascript:void(0);" class="span">
+                        Create Wireframes
+                      </a>
+                      <div class="time">06:20 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line warning">
+                      <a href="javascript:void(0);" class="span">
+                        Develop MVP
+                      </a>
+                      <div class="time">10: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line teal">
+                      <a href="javascript:void(0);" class="span">
+                        Design Ecommerce
+                      </a>
+                      <div class="time">10: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2" class="nav-item">
+            <a
+              ngbNavLink
+              class="nav-link"
+              data-bs-toggle="tab"
+              role="tab"
+              aria-current="page"
+              aria-selected="true"
+              >Week</a
+            >
+            <ng-template ngbNavContent>
+              <div
+                class="tab-pane border-0 p-0 text-muted"
+                id="tasktab-2"
+                role="tabpanel"
+              >
+                <div class="">
+                  <div class="tasks">
+                    <div class="task-line teal">
+                      <div class="span">
+                        <a href="javascript:void(0);"> Management meeting </a>
+                      </div>
+                      <div class="time">06:30 AM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line danger">
+                      <div class="span">
+                        <a href="javascript:void(0);"> Connect API to pages </a>
+                      </div>
+                      <div class="time">08:00 AM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line purple">
+                      <div class="span">
+                        <a href="javascript:void(0);">
+                          Icon change in Redesign App
+                        </a>
+                      </div>
+                      <div class="time">11:20 AM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line warning">
+                      <div class="span">
+                        <a href="javascript:void(0);">
+                          Test new features in tablets
+                        </a>
+                      </div>
+                      <div class="time">02: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line success">
+                      <div class="span">
+                        <a href="javascript:void(0);"> Design Logo </a>
+                      </div>
+                      <div class="time">04: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3" class="nav-item">
+            <a
+              ngbNavLink
+              class="nav-link"
+              data-bs-toggle="tab"
+              role="tab"
+              aria-current="page"
+              aria-selected="true"
+              >Month</a
+            >
+            <ng-template ngbNavContent>
+              <div
+                class="tab-pane border-0 p-0 text-muted"
+                id="tasktab-3"
+                role="tabpanel"
+              >
+                <div class="">
+                  <div class="tasks">
+                    <div class="task-line info">
+                      <a href="javascript:void(0);" class="span">
+                        Design a Landing Page
+                      </a>
+                      <div class="time">06:12 AM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line danger">
+                      <div class="span">
+                        <a href="javascript:void(0);">
+                          Food Delivery Mobile Application
+                        </a>
+                      </div>
+                      <div class="time">3:00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line warning">
+                      <a href="javascript:void(0);" class="span">
+                        Export Database values
+                      </a>
+                      <div class="time">03:20 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line pink">
+                      <a href="javascript:void(0);" class="span">
+                        Write Simple Python Script
+                      </a>
+                      <div class="time">04: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="tasks">
+                    <div class="task-line success">
+                      <a href="javascript:void(0);" class="span">
+                        Write Simple Anugalr Program
+                      </a>
+                      <div class="time">05: 00 PM</div>
+                    </div>
+                    <label class="checkbox">
+                      <span class="check-box">
+                        <span class="ckbox"
+                          ><input type="checkbox" /><span></span
+                        ></span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body pt-3 mt-2">
+        <div class="tab-content chat-tab" [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6 col-xl-4 col-sm-12">
+    <div class="card overflow-hidden">
+      <div class="card-header pb-0">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title">Latest Ratings and Reviews</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 custom-widgets-list'"
+            [Menuclass]="'dropdown-menu'"
+          >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+      </div>
+      <p class="fs-12 text-gray-5 mb-0 px-3">
+        A review is an evaluation of a publication, service, or company .<a
+          href="javascript:void(0);"
+          class="text-primary"
+          >Learn more</a
+        >
+      </p>
+      <div class="rating-scroll">
+        @for (rating of ratings; track $index) {
+        <div>
+          <div class="px-3 py-3 border-bottom">
+            <div class="media mt-0">
+              <div class="d-flex me-3">
+                <a href="javascript:void(0);">
+                  <img
+                    class="media-object avatar rounded-circle w-7 h-7"
+                    [src]="rating.imageUrl"
+                    alt="Profile Image"
+                  />
+                </a>
+              </div>
+              <div class="media-body">
+                <div class="d-flex">
+                  <h6 class="mt-0 mb-0 fw-medium fs-14">{{ rating.name }}</h6>
+                  <span class="fs-14 ms-auto d-flex gap-1">
+                    @for (star of
+                    [].constructor(getStarRating(rating.rating).fullStars);
+                    track $index) {
+                    <i class="ion ion-md-star text-warning"></i>
+                    } @if (getStarRating(rating.rating).halfStars) {
+                    <i class="ion ion-md-star-half text-warning"></i>
+                    } @for (star of
+                    [].constructor(getStarRating(rating.rating).emptyStars);
+                    track $index) {
+                    <i class="ion ion-md-star-outline text-warning"></i>
+                    }
+                  </span>
+                </div>
+                <div class="d-flex">
+                  <p class="fs-12 text-muted mb-0">{{ rating.reviewText }}</p>
+                  <small class="ms-auto text-end">{{
+                    rating.reviewDate
+                  }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6 col-xl-4">
+    <div class="card">
+      <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title mg-b-10">Sessions by Countries</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 custom-widgets-list'"
+            [Menuclass]="'dropdown-menu'"
+          >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+        <p class="fs-12 text-gray-5 mb-0">
+          session by country mean that the user is from the stated country or
+          that the session is originating in the stated country.
+          <a href="javascript:void(0);" class="text-primary">Learn more</a>
+        </p>
+      </div>
+      <div class="card-body">
+        <ul class="sales-session mb-0 list-unstyled">
+          @for (country of countries1; track $index) {
+          <li class="{{ country.liClass }}">
+            <div class="d-flex justify-content-between">
+              <h6 class="fs-14">{{ country.name }}</h6>
+              <p class="fw-semibold mb-2">
+                ${{ country.sales }}
+                <span class="text-muted fw-normal"
+                  >({{ country.percentage | number : "1.2-2" }}%)</span
+                >
+              </p>
+            </div>
+            <div
+              class="progress progress-xs"
+              role="progressbar"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar"
+                [ngClass]="country.progressColor"
+                [style.width.%]="country.progress"
+              ></div>
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 col-lg-6 col-xl-4 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title">Browser Usage</h4>
+          <cs-dropdowns
+            [Customclass]="'dropdown'"
+            [Icon]="true"
+            [IconClass]="'text-inverse'"
+            [class]="'mdi mdi-dots-vertical text-gray no-caret p-0 custom-widgets-list'"
+            [Menuclass]="'dropdown-menu'"
+          >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+            >
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Something Else Here</a
+            >
+          </cs-dropdowns>
+        </div>
+        <p class="fs-12 text-gray-5 mb-0">
+          Tells you where your visitors originated from, such as search engines,
+          social networks or website referrals.
+          <a href="javascript:void(0);" class="text-primary">Learn more</a>
+        </p>
+      </div>
+      <!-- card-header -->
+      <div class="card-body p-0 pt-2">
+        <div class="browser-stats">
+          @for (browser of browserStats; track $index) {
+          <div class="d-flex align-items-center item border-bottom">
+            <div class="d-flex">
+              <img
+                [src]="browser.imageUrl"
+                alt="img"
+                class="ht-30 wd-30 me-2"
+              />
+              <div>
+                <h6 class="mb-0 fs-14">{{ browser.name }}</h6>
+                <span class="sub-text">{{ browser.description }}</span>
+              </div>
+            </div>
+            <div class="ms-auto my-auto">
+              <div class="d-flex">
+                <span class="me-4">{{ browser.sessions | number }}</span>
+                <span [ngClass]="browser.color" class="fs-15">
+                  <i
+                    class="fe"
+                    [ngClass]="
+                      browser.trend === 'up' ? 'fe-arrow-up' : 'fe-arrow-down'
+                    "
+                  ></i>
+                  {{ browser.percentage | number : "1.2-2" }}%
+                </span>
+              </div>
+            </div>
+            <div
+              class="progress progress-xs"
+              role="progressbar"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar"
+                [ngClass]="browser.color"
+                [style.width.%]="browser.percentage"
+              ></div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+    <!-- card -->
+  </div>
+</div>
+<!-- End::row-10 -->

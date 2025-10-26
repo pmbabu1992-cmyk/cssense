@@ -1,0 +1,43 @@
+
+    <div class="card item-card">
+      <div class="card-body pb-0">
+        <div class="text-center zoom">
+          <a routerLink="/pages/products"><img class="w-100 rounded-3" [src]="product.image" alt="img" /></a>
+        </div>
+        <div class="card-body px-0 pb-3">
+          <div class="row">
+            <div class="col-9">
+              <div class="cardtitle custom-star">
+                <div> <a href="javascript:void(0);"><i class="fa fa-star text-warning"></i></a> 
+                  <a href="javascript:void(0);"><i class="fa fa-star text-warning"></i></a> 
+                  <a href="javascript:void(0);"><i class="fa fa-star text-warning"></i></a> 
+                  <a href="javascript:void(0);"><i class="fa fa-star-half text-warning fs-14"></i></a> 
+                  <!-- <a href="javascript:void(0);"><i class="fa fa-star-o text-warning fs-14"></i></a>  -->
+                  <a href="javascript:void(0);"> ({{product.rating}})</a> </div>
+                <a class="shop-title fs-16">{{ product.productName }}</a>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="cardprice-2 gap-2">
+                <span class="type--strikethrough number-font d-block">{{ product.Price1 }}</span>
+                <span class="number-font">{{ product.Price2 }}</span>
+              </div>
+            </div>
+            <div>
+              <p class="shop-description fs-13 text-muted mt-2 mb-0">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor ipsum quia saepe esse.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <div class="text-center px-2">
+          <a [routerLink]="['/pages/cart']" class="btn btn-md btn-primary mb-2 ms-2 w-100 w-sm-auto"><i class="fe fe-shopping-cart me-2"></i>Add to Cart</a>
+          <a (click)="onRemove(product.id)" class="btn btn-md btn-light mb-2 ms-2 w-100 w-sm-auto" data-bs-dismiss="alert" aria-label="Close">
+            <span class="me-2 fs-14">Remove</span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 0 24 24" width="16px" fill="#495057"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  

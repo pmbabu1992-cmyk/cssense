@@ -1,0 +1,21 @@
+
+    <div class="card pricing-card">
+      <div [class]="cardStatusClass"></div> <!-- Optional card status (e.g., bg-success) -->
+      <div class="card-body text-center">
+        <div class="card-category">{{ planName }}</div>
+        <div class="display-5 my-4">{{ price }}</div>
+        <ul class="list-unstyled leading-loose">
+            @for (feature of features; track $index) {
+          <li>
+            <i [class]="'fe ' + (feature.isAvailable ? 'fe-check text-success' : 'fe-x text-danger') + ' me-2'"></i>
+            <strong>{{ feature.feature.split(' ')[0] }}</strong> {{ feature.feature.split(' ').slice(1).join(' ') }}
+          </li>
+        }
+        </ul>
+        <div class="text-center mt-6">
+          <a href="javascript:void(0);" [class]="'btn ' + buttonClass + ' btn-block w-100'">{{ buttonText }}</a>
+        </div>
+      </div>
+    </div>
+
+  

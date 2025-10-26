@@ -1,0 +1,142 @@
+<!-- Page Header -->
+<app-page-header [title]="'Apex Column Charts'"
+  [items]="['Apex Charts']"
+  [active_item]="'Apex Column Charts'"
+ />
+<!-- Page Header Close -->
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Basic Column Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="column-basic">
+                  <cs-apexcharts  [chartOptions]="BasicColumnChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Column Chart With Datalabels</div>
+          </div>
+          <div class="card-body">
+              <div id="column-datalabels">
+                  <cs-apexcharts  [chartOptions]="DataLableColumnChartdata"></cs-apexcharts>
+           
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Stacked Column Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="column-stacked">
+                  <cs-apexcharts  [chartOptions]="StackedChartData"></cs-apexcharts>
+                
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">100% Stacked Column Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="column-stacked-full">
+                  <cs-apexcharts  [chartOptions]="stackedData100"></cs-apexcharts>
+           
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Column Chart With Markers</div>
+          </div>
+          <div class="card-body">
+              <div id="column-markers">
+                  <cs-apexcharts  [chartOptions]="ColumnChartdata"></cs-apexcharts>
+            
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Column Chart With Rotated Labels</div>
+          </div>
+          <div class="card-body">
+              <div id="column-rotated-labels">
+                  <cs-apexcharts  [chartOptions]="RotatedLevelChartData"></cs-apexcharts>
+                
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Column Chart With Negative Values</div>
+          </div>
+          <div class="card-body">
+              <div id="column-negative">
+                  <cs-apexcharts  [chartOptions]="NegativeChartdata"></cs-apexcharts>
+               
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Range Column Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="column-range">
+                  <cs-apexcharts  [chartOptions]="RangeColumnChartData"></cs-apexcharts>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Dynamic Loaded Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="chart-year">
+                  <cs-apexcharts  [chartOptions]="DynamicChartData1"></cs-apexcharts>
+                
+              </div>
+              <div id="chart-quarter">
+                  <cs-apexcharts  [chartOptions]="DynamicChartData2"></cs-apexcharts>
+                 
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Distributed Columns Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="columns-distributed">
+                  <cs-apexcharts  [chartOptions]="DistributedChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--End::row-1 -->

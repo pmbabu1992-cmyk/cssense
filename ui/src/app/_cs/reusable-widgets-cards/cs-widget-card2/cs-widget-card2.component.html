@@ -1,0 +1,24 @@
+
+    <div class="card card-img-holder" [ngClass]="bgClass">
+      <div class="card-body list-icons p-0">
+        <div class="clearfix px-4 pt-3">
+          <div class="float-end mt-2">
+            <span class="text-primary">
+              <i [ngClass]="'si ' + icon + ' fs-30'"></i>
+            </span>
+          </div>
+          <div class="float-start">
+            <p class="card-text text-muted mb-1">{{ title }}</p>
+            <h4 >{{ value }}</h4>
+          </div>
+        </div>
+        <div class="card-footer p-0">
+          <p class="text-muted mb-0 px-4 p-3">
+            <i [ngClass]="'si ' + footerIcon + ' ' + footerIconColor + ' me-2'"></i>
+            {{ footerText }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+  

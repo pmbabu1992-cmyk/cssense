@@ -1,0 +1,40 @@
+
+
+    <div class="card">
+      <div class="card-body h-100">
+        <div class="pro-img-box">
+          <div class="product-sale">
+            @if (product.isNew) {
+            <div class="badge bg-{{product.badgeColor}}">New</div>
+            }
+            <a routerLink="/pages/wish-list">
+              <i class="mdi mdi-{{product.HeartClass}} ms-auto wishlist"></i>
+            </a>
+          </div>
+          <a routerLink="/pages/product-details">
+            <img class="w-100 rounded-3" [src]="product.image" alt="product-image" />
+          </a>
+          <a routerLink="/pages/cart" class="adtocart">
+            <i class="las la-shopping-cart"></i>
+          </a>
+        </div>
+        <div class="text-center pt-3">
+          <h3 class="h6 mb-2 mt-4 fw-bold text-uppercase">{{ product.name }}</h3>
+          <span class="fs-15 ms-auto"> 
+            <i class="ion ion-md-star text-warning me-1"></i> 
+            <i class="ion ion-md-star text-warning me-1"></i> 
+            <i class="ion ion-md-star text-warning me-1"></i> 
+            <i class="ion ion-md-star-half text-warning me-1"></i> 
+            <i class="ion ion-md-star-outline text-warning me-1"></i> 
+          </span>
+          <h4 class="h5 mb-0 mt-2 text-center fw-bold text-danger">
+            ${{ product.price }}
+            @if (product.prevPrice) {
+            <span class="text-secondary fw-normal fs-13 ms-1 prev-price">
+              ${{ product.prevPrice }}
+            </span>
+        }
+          </h4>
+        </div>
+      </div>
+    </div>

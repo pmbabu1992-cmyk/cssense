@@ -1,0 +1,10 @@
+
+    <div class="card features main-features p-4" [ngClass]="bgClass">
+      <div class="bg-img mb-2" [innerHTML]="getSanitizedSVG(icon)">
+      </div>
+      <div>
+        <h5 class="fw-bold">{{ title }}</h5>
+        <p class="mb-0">{{ description }}</p>
+      </div>
+    </div>
+ 

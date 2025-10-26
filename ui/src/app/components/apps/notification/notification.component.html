@@ -1,0 +1,237 @@
+<!-- Page Header -->
+ <app-page-header [title]="'Notifications'"
+  [items]="['Apps']"
+  [active_item]="'Notifications'"
+ /> 
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Top Right Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          (click)="showDefault1()"
+          class="btn btn-primary"
+          id="basic"
+        >
+          Top Right
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Top Center Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="showDefault2()"
+          id="async-error"
+        >
+          Top Center
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Top left Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="showDefault3()"
+          id="async-success"
+        >
+          Top left
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Bottom Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="showDefault4()"
+          id="popup"
+        >
+          Bottom Center
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End::row-1 -->
+
+<!-- Start::row-2 -->
+<div class="row">
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Info Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button type="button" (click)="info()" class="btn btn-info" id="info">
+          Info Notification
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Success Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="success()"
+          id="success"
+        >
+          Success Notification
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Warning Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-warning"
+          (click)="warning()"
+          id="warning"
+        >
+          Warning Notification
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Error Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="error()"
+          id="error"
+        >
+          Error Notification
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End::row-2 -->
+
+<!-- Start::row-3 -->
+<div class="row">
+  <div class="col-xl-4 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Confirmation Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          (click)="CongratulationsOpen(congratulations)"
+          class="btn btn-secondary"
+          id="confirm"
+        >
+          Notification
+        </button>
+        <ng-template #congratulations let-modal>
+          <div class="modal-content">
+            <div class="modal-body text-center">
+              <i
+                class="fe fe-alert-triangle fs-50 text-warning lh-1 mb-4 d-inline-block"
+              ></i>
+              <h4 class="mb-3">Confirmation required</h4>
+              <p class="mb-2 mx-4">
+                Are you sure you want to reset the password
+              </p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button
+                (click)="modal.close('OK')"
+                type="button"
+                class="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                OK
+              </button>
+              <button type="button" (click)="modal.close('Cancel')" class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Async Block With Error Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          (click)="showError()"
+          class="btn btn-primary"
+          id="async"
+        >
+          Notification
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Async Block With Success Notification</div>
+      </div>
+      <div class="card-body text-center">
+        <button
+          type="button"
+          (click)="showSuccess()"
+          class="btn btn-primary"
+          id="async-block"
+        >
+          Notification
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End::row-3 -->
+
+
+<ngx-notifier [allowDuplicates]="false"
+[allowHTML]="false"
+[duration]="2000"
+[disableAnimations]="true"
+[dismissOnClick]="true"
+[insertOnTop]="true"
+[max]="5"
+ />

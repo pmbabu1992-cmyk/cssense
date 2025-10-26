@@ -1,0 +1,140 @@
+<!-- Page Header -->
+<app-page-header [title]="'Apex Line Charts'"
+  [items]="['Apex Charts']"
+  [active_item]="'Apex Line Charts'"
+ />
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Basic Line Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="BasicLineData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Line Chart With Data Labels</div>
+          </div>
+          <div class="card-body">
+              <div id="line-chart-datalabels" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="DataLableLinechartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Line With Annotations</div>
+          </div>
+          <div class="card-body">
+              <div id="annotation-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="LineAnnotationData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Brush Chart</div>
+          </div>
+          <div class="box-body">
+              <div id="brush-chart1" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="BrushChartsData1"></cs-apexcharts>
+              </div>
+              <div id="brush-chart">
+                  <cs-apexcharts  [chartOptions]="BrushChartsData2"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">StepLine Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="stepline-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="StepLineChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Gradient Line Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="gradient-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="GradientLineCahrtData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Missing/Null Values Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="null-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="MissingNullChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Real Time Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="dynamic-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="ReatTimeChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Dashed Line Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="dashed-chart" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="DasheLineChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Syncing Charts</div>
+          </div>
+          <div class="card-body">
+              <div id="chart-line" class="chart-container">
+                  <cs-apexcharts  [chartOptions]="SyncingChartData1"></cs-apexcharts>
+              </div>
+              <div id="chart-line2">
+                  <cs-apexcharts  [chartOptions]="SyncingChartData2"></cs-apexcharts>
+              </div>
+              <div id="chart-area">
+                  <cs-apexcharts  [chartOptions]="SyncingChartData3"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--End::row-1 -->

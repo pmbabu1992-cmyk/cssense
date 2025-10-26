@@ -1,0 +1,117 @@
+<app-page-header [title]="'Userlist'"
+  [items]="['Advanced Ui']"
+  [active_item]="'Userlist'"
+ />
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 grid-margin">
+    <div class="card">
+      <div class="card-header pb-0">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title mb-0">USERS TABLE</h4>
+          <cs-dropdowns [Customclass]="'dropdown'" [Icon]="true" [IconClass]="'mdi mdi-dots-horizontal text-gray'"
+                                    [class]="'tx-inverse no-caret border-0 p-0'" [Menuclass]="'dropdown-menu dropdown-menu-end'">
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Action</a>
+            <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+              >Another Action</a
+              >
+              <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);"
+                >Something Else Here</a
+                >
+          </cs-dropdowns>
+            </div>
+            <p class="fs-12 text-gray-5 mb-2">
+              Example of CS Simple Table. <a href="javascript:void(0);">Learn more</a>
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive border border-bottom-0 userlist-table">
+              <cs-reusable-tables [columns]="ProductsHeader"  tableClass="table card-table table-vcenter text-nowrap mb-0"  [showCheckbox]="false">
+                  @for (output of data; track output) {
+                    <tr>
+                      <td>
+                        <img
+                          alt="avatar"
+                          class="rounded-circle avatar-md avatar"
+                          src="{{ output.image }}"
+                          />
+                      </td>
+                      <td>{{ output.name }}</td>
+                      <td>{{ output.create }}</td>
+                      <td>
+                        @if (output.status == 'In Active') {
+                          <span
+                            class="badge bg-secondary-transparent"
+                            >
+                            {{ output.status }}</span
+                            >
+                          }
+                          @if (output.status == 'Active') {
+                            <span
+                              class="badge bg-success-transparent"
+                              >
+                              <div class="dot-label bg-success me-1"></div>
+                              {{ output.status }}
+                            </span>
+                          }
+                          @if (output.status == 'Pending') {
+                            <span
+                              class="badge bg-warning-transparent"
+                              >
+                              <div class="dot-label bg-warning me-1"></div>
+                              {{ output.status }}
+                            </span>
+                          }
+                          @if (output.status == 'Banned') {
+                            <span
+                              class="badge bg-danger-transparent"
+                              >
+                              <div class="dot-label bg-danger me-1"></div>
+                              {{ output.status }}
+                            </span>
+                          }
+                        </td>
+                        <td>
+                          <a href="javascript:void(0);">{{ output.email }}</a>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0);"
+                            class="btn btn-sm btn-primary me-1"
+                            ngbTooltip="search"
+                            >
+                            <i class="las la-search"></i>
+                          </a>
+                          <a
+                            href="javascript:void(0);"
+                            class="btn btn-sm btn-info me-1"
+                            ngbTooltip="edit"
+                            >
+                            <i class="las la-pen"></i>
+                          </a>
+                          <a
+                            (click)="delete(output.id)"
+                            href="javascript:void(0);"
+                            class="btn btn-sm btn-danger me-1"
+                            ngbTooltip="delete"
+                            >
+                            <i class="las la-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    }
+              </cs-reusable-tables>
+              </div>
+              <ul class="pagination mt-4 mb-0 float-end flex-wrap">
+                <ngb-pagination [collectionSize]="30" aria-label="Default pagination">
+                  <ng-template ngbPaginationPrevious class="p-3">Prev</ng-template>
+                  <ng-template ngbPaginationNext>Next</ng-template>
+                </ngb-pagination>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- COL END -->
+      </div>
+      <!--End::row-1 -->

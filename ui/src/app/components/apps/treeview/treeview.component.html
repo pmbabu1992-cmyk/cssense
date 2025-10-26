@@ -1,0 +1,42 @@
+<!-- Page Header -->
+<app-page-header [title]="'Treeview'" [items]="['Apps']" [active_item]="'Treeview'" />
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Basic Treeview</div>
+      </div>
+      <div class="card-body">
+        <div id="tree" class="fs-15">
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle href="javascript:void(0);">
+              {{ node.name }}
+            </mat-tree-node>
+            <!-- This is the tree node template for expandable nodes -->
+            <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" >
+              <div class="mat-tree-node" >
+                <button href="javascript:void(0);" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+                  <mat-icon href="javascript:void(0);" class="material-icons mat-icon-rtl-mirror">
+                    {{
+                      treeControl.isExpanded(node)
+                        ? "expand_more"
+                        : "chevron_right"
+                    }}
+                  </mat-icon>
+                  {{ node.name }}
+                </button>
+              </div>
+              <div href="javascript:void(0);" [class.example-tree-invisible]="!treeControl.isExpanded(node)" role="group">
+                <ng-container href="javascript:void(0);" matTreeNodeOutlet></ng-container>
+              </div>
+            </mat-nested-tree-node>
+          </mat-tree>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->

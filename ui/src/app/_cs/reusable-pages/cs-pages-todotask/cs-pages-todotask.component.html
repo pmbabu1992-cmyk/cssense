@@ -1,0 +1,60 @@
+
+    <div class="card mb-4">
+      <div class="card-body p-0">
+        <div class="todo-widget-header d-flex pb-2 p-4">
+          <div ngbDropdown class="dropdown">
+            <div ngbDropdownToggle class="drop-down-profile no-caret" data-bs-toggle="dropdown">
+              <img alt="" class="rounded-circle avatar avatar-lg" [src]="profileImage" />
+              <span [class]="taskColor" class="assigned-task">{{ assignedTasks }}</span>
+            </div>
+            <div ngbDropdownMenu class="dropdown-menu fs-13">
+              <div class="main-header-profile text-center">
+                <div class="fs-16 h5 mb-0">{{ userName }}</div>
+                <span>{{ userRole }}</span>
+              </div>
+              <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">View Total Tasks</a>
+              <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Completed Tasks</a>
+              <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Settings</a>
+            </div>
+          </div>
+          <div class="ms-auto d-flex align-items-center justify-content-between">
+              <a href="javascript:void(0);" placement="top" data-bs-toggle="tooltip" ngbTooltip="archive" title="archive" class="p-2 text-muted no-caret">
+                <i class="fas fa-envelope-open-text"></i>
+              </a>
+              <a href="javascript:void(0);" placement="top" data-bs-toggle="tooltip" ngbTooltip="Move to spam" class="p-2 text-muted no-caret">
+                <i class="fas fa-exclamation-circle"></i>
+              </a>
+              <div ngbDropdown class="">
+                <a ngbDropdownToggle class="p-2 text-muted no-caret" data-bs-toggle="dropdown">
+                  <i class="fas fa-ellipsis-v"></i>
+                </a>
+                <div ngbDropdownMenu class="dropdown-menu-end fs-13">
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Mark As Unread</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Mark As Important</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Add to Tasks</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Add Star</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Move to</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Mute</a>
+                  <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">Move to Trash</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <span class="fs-12 text-muted">{{ taskTime }}</span>
+          <span class="badge bg-primary-transparent text-primary ms-auto float-end">{{ taskStatus }}</span>
+          <h5 class="fs-14 mb-0 mt-2 text-capitalize">{{ taskTitle }}</h5>
+        </div>
+        <div class="p-4 border-top">
+          <span class="fs-12 text-muted">{{ taskTime }}</span>
+          <span class="badge bg-danger-transparent text-danger ms-auto float-end">Pending task</span>
+          <h5 class="fs-14 mb-0 mt-2 text-capitalize">{{ taskDescription }}</h5>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-primary" href="javascript:void(0);" [class.disabled]="disabled" placement="top" data-bs-toggle="tooltip" ngbTooltip="Assign Task">Assign</a>
+        <a class="btn btn-outline-primary ms-auto float-end" href="javascript:void(0);" placement="top" data-bs-toggle="tooltip" ngbTooltip="View Task">View All</a>
+      </div>
+    </div>
+
+  

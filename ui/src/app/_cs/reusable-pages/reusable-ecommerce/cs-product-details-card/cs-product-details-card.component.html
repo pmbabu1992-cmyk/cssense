@@ -1,0 +1,28 @@
+
+    <div class="card item-card">
+      <div class="card-body pb-0 h-100">
+        <div class="text-center">
+          <img [src]="productImage" alt="img" class="img-fluid w-100 rounded-3" />
+        </div>
+        <div class="card-body relative product-des">
+          <div class="cardtitle">
+            <span>{{ productCategory }}</span>
+            <a>{{ productTitle }}</a>
+          </div>
+          <div class="cardprice">
+            <span class="type--strikethrough">{{ originalPrice }}</span>
+            <span>{{ discountedPrice }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center border-top py-3 px-2">
+        <a [routerLink]="['/pages/products']" class="btn btn-primary my-1 me-1">
+          <i class="fe fe-eye me-1"></i> View More
+        </a>
+        <a [routerLink]="['/pages/cart']" class="btn btn-success me-1">
+          <i class="fe fe-shopping-cart me-1"></i> Add to cart
+        </a>
+      </div>
+    </div>
+
+  

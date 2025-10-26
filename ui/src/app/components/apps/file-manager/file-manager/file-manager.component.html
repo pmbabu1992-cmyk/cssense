@@ -1,0 +1,193 @@
+<!-- Page Header -->
+<app-page-header [title]="'File Manager'"
+  [items]="['File Manager']"
+  [active_item]="'File Manager'"
+ />
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-lg-4 col-xl-3">
+    <div class="card">
+      <div class="main-content-left main-content-left-mail card-body">
+        <a
+          class="btn btn-primary btn-compose"
+          id="btnCompose"
+          href="javascript:void(0);"
+          ><i class="fa fa-plus mx-2"></i> Create Folder</a
+        >
+        <div class="main-mail-menu">
+          <nav class="nav main-nav-column">
+            <a class="nav-link thumb active" href="javascript:void(0);"
+              ><i class="fe fe-image"></i> Images
+            </a>
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-music"></i> Music</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-video"></i> Videos</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-smartphone"></i> APKS</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-download"></i> Downloads</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-heart"></i> Favourites</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-eye"></i> Hidden FIles</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-share"></i> Transfer files
+            </a>
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-database"></i> Google Drive</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-airplay"></i> FTP</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-lock"></i> Private FIles</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-wind"></i> Deep Clean</a
+            >
+            <a class="nav-link thumb" href="javascript:void(0);"
+              ><i class="fe fe-grid"></i> More</a
+            >
+          </nav>
+        </div>
+        <!-- main-mail-menu -->
+        <div class="card mt-3 pb-0 mb-0 shadow-none">
+          <div class="card-header fw-bold">
+            <i class="fe fe-hard-drive me-2"></i>Storage
+          </div>
+          <div class="card-body pt-0">
+            <div
+              class="progress progress-xs mb-2"
+              role="progressbar"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progress-bar bg-primary" style="width: 25%"></div>
+            </div>
+            <div class="text-muted fw-medium fs-13 mb-1">
+              26.24 GB Used of 128GB
+            </div>
+            <div class="fs-13 text-primary fw-medium">Upgrade Storage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-xl-9">
+    <div class="row">
+      <div class="col-6">
+        <div class="fs-20 mb-4">FIle Manager</div>
+      </div>
+      <div class="col-sm-6 col-12 col-auto file-1">
+        <div class="input-group mb-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search folder....."
+          />
+          <button class="btn ripple btn-primary" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-muted mb-2 fs-16">All Files</div>
+    <div class="row">
+      @for (card of cardsData; track $index) {
+      <div class="col-md-6 col-xl-3">
+        <div class="card">
+          <a [routerLink]="card.link">
+            <div class="card-body">
+              <div class="fs-16 d-flex align-items-center flex-wrap">
+                @if (card.isSvg) {<svg class="file-manager-icon me-2" xmlns="http://www.w3.org/2000/svg" [attr.fill]="card.bgColor" viewBox="0 0 24 24">
+                  <path [attr.fill]="card.bgColor"  [attr.d]="card.iconPath" />
+                  <path [attr.fill]="card.bgColor1" [attr.d]="card.iconPath1" />
+                  <path [attr.fill]="card.bgColor2" [attr.d]="card.iconPath2" />
+                </svg>
+              } @else {
+                <svg class="file-manager-icon me-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <rect width="9" height="9" x="2" y="2" fill="#f74f75" rx="1"></rect>
+                  <rect width="9" height="9" x="2" y="13" fill="#fa95ac" rx="1"></rect>
+                  <rect width="9" height="9" x="13" y="2" fill="#fa95ac" rx="1"></rect>
+                  <rect width="9" height="9" x="13" y="13" fill="#fa95ac" rx="1"></rect>
+                </svg>
+              }
+              
+                {{ card.title }}
+                <div class="ms-auto fs-13 text-muted">{{ card.fileSize }}</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    }
+    </div>
+    <div class="text-muted mb-2 fs-16">Folders</div>
+    <div class="row">
+      @for (file of files; track $index) {
+      <div class="col-xl-3 col-md-4 col-sm-6">
+        <div class="card p-0">
+          <div class="d-flex align-items-center px-3 pt-3 pb-1">
+            <label class="custom-control form-checkbox mb-0">
+              <input type="checkbox" class="form-check-input" name="example-checkbox2" value="option2" />
+              <span class="custom-control-label"></span>
+            </label>
+            <div class="float-end ms-auto">
+              <cs-dropdowns [Customclass]="'dropdown'" [Icon]="true" [IconClass]="'fe fe-more-vertical'"
+                   [class]="'option-dots no-caret border-0 text-default'" [Menuclass]="'dropdown-menu rounded-7'">
+                <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">
+                  <i class="fe fe-edit me-2"></i> Edit
+                </a>
+                <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">
+                  <i class="fe fe-share me-2"></i> Share
+                </a>
+                <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">
+                  <i class="fe fe-download me-2"></i> Download
+                </a>
+                <a ngbDropdownItem class="dropdown-item" href="javascript:void(0);">
+                  <i class="fe fe-trash me-2"></i> Delete
+                </a>
+              </cs-dropdowns>
+            </div>
+          </div>
+          <div class="card-body pt-0 text-center">
+            <div class="file-manger-icon">
+              <a routerLink="/apps/file-manager/file-manager-list">
+                <img [src]="file.imageUrl" alt="img" class="rounded-7" />
+              </a>
+            </div>
+            <h6 class="mb-1 fw-semibold fs-14">{{ file.name }}</h6>
+            <span class="text-muted">{{ file.size }}</span>
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+    <ul class="pagination float-end mb-4">
+      <li class="page-item page-prev disabled">
+        <a class="page-link" href="javascript:void(0);" tabindex="-1">Prev</a>
+      </li>
+      <li class="page-item active">
+        <a class="page-link" href="javascript:void(0);">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0);">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="javascript:void(0);">3</a>
+      </li>
+      <li class="page-item page-next">
+        <a class="page-link" href="javascript:void(0);">Next</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!--End::row-1 -->

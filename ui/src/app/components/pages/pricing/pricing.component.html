@@ -1,0 +1,58 @@
+ <app-page-header [title]="'Pricing'"
+  [items]="['Pages']"
+  [active_item]="'Pricing'"
+ /> 
+ 
+ <!-- Start::row-1 -->
+                <h4 class="card-title mt-4 mb-3">Column pricing table</h4>
+                <div class="row">
+                    @for ( plan of pricingPlans; track $index) {
+                        <div class="col-sm-6 col-lg-6 col-xl-3">
+                    <cs-pages-pricing1
+                      [planName]="plan.planName"
+                      [price]="plan.price"
+                      [features]="plan.features"
+                      [buttonText]="plan.buttonText"
+                      [buttonColor]="plan.buttonColor"
+                    ></cs-pages-pricing1>
+                    </div>
+                    }
+                  </div>
+                  
+                <!-- row closed -->
+
+                <!-- Start::row-2 -->
+                <div class="row">
+                    @for (plan of pricingPlans1; track $index) {
+                        <div class="col-sm-6 col-lg-6 col-xl-3">
+                    <cs-pages-pricing2
+                      [planName]="plan.planName"
+                      [price]="plan.price"
+                      [features]="plan.features"
+                      [buttonText]="plan.buttonText"
+                      [buttonClass]="plan.buttonClass"
+                      [cardStatusClass]="plan.cardStatusClass"
+                    ></cs-pages-pricing2>
+                    </div>
+                    }
+                  </div>
+                <!--End::row-2 -->
+
+                <!-- Start::row-3 -->
+                <h4 class="card-title mt-4 mb-3">Pricing cards 4 columns</h4>
+                <div class="row">
+                    @for (plan of pricingPlans2; track $index) {
+                        <div class="col-xs-6 col-sm-6 col-lg-6 col-xl-3">
+                    <cs-pages-pricing3
+                      [planName]="plan.planName"
+                      [price]="plan.price"
+                      [features]="plan.features"
+                      [buttonText]="plan.buttonText"
+                      [buttonColor]="plan.buttonColor"
+                      [panelColor]="plan.panelColor"
+                    ></cs-pages-pricing3>
+                    </div>
+                    }
+                  </div>
+                  
+                <!--End::row-3 -->

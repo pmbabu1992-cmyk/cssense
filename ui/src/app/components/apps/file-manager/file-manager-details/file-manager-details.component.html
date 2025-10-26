@@ -1,0 +1,143 @@
+<!-- Page Header -->
+<app-page-header
+  [title]="'File Manager Details'"
+  [items]="['File Manager']"
+  [active_item]="'File Manager Details'"
+/>
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row row-sm">
+  <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-body px-4 pt-4">
+        <a routerLink="/advanced/blog-details"
+          ><img
+            src="./assets/images/media/media-85.jpg"
+            alt="img"
+            class="cover-image rounded-3 w-100"
+        /></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12">
+    <div class="card custom-card">
+      <div class="card-body">
+        <h5 class="mb-3 fs-16">File details :</h5>
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="table-responsive">
+              <table class="table mb-0 border-top table-bordered text-nowrap">
+                <tbody>
+                  <tr>
+                    <th scope="row">File-name</th>
+                    <td>image.jpg</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">File-size</th>
+                    <td>12.45mb</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">uploaded-date</th>
+                    <td>01-12-2020</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">uploaded-by</th>
+                    <td>prityy abodh</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">image-width</th>
+                    <td>1000</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">image-height</th>
+                    <td>600</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">File-formate</th>
+                    <td>jpg</td>
+                  </tr>
+                  <tr class="border-bottom">
+                    <th scope="row">File-location</th>
+                    <td>storage/photos/image.jpg</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-8 col-xl-12 col-lg-12 col-md-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="swiper swiper-navigation">
+                <div class="swiper-wrapper">
+                  <swiper-container
+                  #swiperContainer1
+                  class="swiper mySwiper"
+                  space-between="20"
+                  slides-per-view="4"
+                  slides-per-group="1"
+                  pagination="false"
+                  navigation="true"
+                  autoplay-delay="2000" autoplay-disable-on-interaction="false"
+                >
+                @for (slide of slidesStore; track slide) {
+                  <ng-container >
+                    <swiper-slide>
+                      <div class="swiper-slide">
+                      <div class="card custom-card  mb-0 shadow-none file-details-card">
+                        <a><img [src]="slide.src" alt="img"></a>
+                        <div class="card-footer bd-t-0 py-3">
+                          <div class="d-flex">
+                            <div>
+                              <h6 class="mb-0 fs-14">{{ slide.title }}</h6>
+                            </div>
+                            <div class="ms-auto">
+                              <h6 class="text-muted mb-0 fs-14">{{ slide.size }}</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </swiper-slide>
+                  </ng-container>
+                }
+                </swiper-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="col-xxl-4 col-xl-12 col-lg-12 col-md-12">
+    <div class="card custom-card">
+      <div class="card-body">
+        <h5 class="mb-3">Recent Files</h5>
+        <div class="row">
+          <ul id="lightgallery" class="list-unstyled row mb-0" gallerize>
+            @for (img of imageData; track img) {
+            <li
+              class="col-xs-6 col-sm-4 col-md-4 col-xl-3 border-bottom-0"
+              data-responsive="./assets/img/media/1.jpg"
+              data-src="./assets/img/media/1.jpg"
+              data-sub-html="<h4>Gallery Image 1</h4><p> Many desktop publishing packages and web page editors now use Lorem Ipsum</p>"
+            >
+              <a>
+                <img
+                  class="img-responsive rounded-1 my-2 mx-2"
+                  [src]="img.srcUrl"
+                  alt="Thumb-1"
+                />
+              </a>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->

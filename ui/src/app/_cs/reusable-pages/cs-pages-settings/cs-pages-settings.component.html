@@ -1,0 +1,28 @@
+
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex">
+              <div class="settings-main-icon me-4 mt-1 flex-shrink-0">
+                <i [class]="iconClass"></i>
+              </div>
+              <div>
+                <p class="fs-20 fw-medium d-flex mb-0">{{ title }}</p>
+                <p class="fs-13 text-muted mb-0">{{ description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer p-3">
+        <a href="javascript:void(0);" class="fs-14 mb-0 text-primary">Go to Settings</a>
+        <label class="form-switch float-end mb-0">
+          <a href="javascript:void(0);" class="fs-14 mb-0 me-2 text-primary">{{ restoreText }}</a>
+          <input type="checkbox" class="form-switch-input" [checked]="checkboxChecked" />
+          <span class="form-switch-indicator custom-radius"></span>
+        </label>
+      </div>
+    </div>
+
+  

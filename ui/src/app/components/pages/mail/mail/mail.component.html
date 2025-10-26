@@ -1,0 +1,152 @@
+<app-page-header [title]="'Mail'"
+[items]="['Mail']"
+  [active_item]="'Mail'"
+ />
+
+<!-- Start::row-1 -->
+<div class="row main-content-mail">
+  <div class="col-lg-4 col-xl-3 col-md-12">
+    <div class="card mb-4 mg-md-b-0">
+      <div class="card-body">
+        <div class="main-content-left main-content-left-mail">
+          <a
+            class="btn btn-primary btn-compose"
+            routerLink="/pages/mail-compose"
+            >Compose</a
+          >
+          <div class="main-mail-menu">
+            <nav class="nav main-nav-column mb-4">
+              <a class="nav-link active" href="javascript:void(0);"
+                ><i class="bx bxs-inbox"></i> Inbox <span>20</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-star"></i> Starred <span>3</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-bookmarks"></i> Important <span>10</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-send"></i> Sent Mail <span>8</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-edit"></i> Drafts <span>15</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-message-error"></i> Spam <span>128</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-trash"></i> Trash <span>6</span></a
+              >
+            </nav>
+            <label class="main-content-label main-content-label-sm"
+              >Label</label
+            >
+            <nav class="nav main-nav-column mb-4">
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-folder-open"></i> Social <span>10</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-folder"></i> Promotions <span>22</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bx-folder-plus"></i> Updates <span>17</span></a
+              >
+            </nav>
+            <label class="main-content-label main-content-label-sm">Tags</label>
+            <nav class="nav main-nav-column">
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="ri-twitter-x-fill"></i> Twitter <span>2</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bxl-github"></i> Github <span>32</span></a
+              >
+              <a class="nav-link" href="javascript:void(0);"
+                ><i class="bx bxl-google-plus"></i> Google <span>7</span></a
+              >
+            </nav>
+          </div>
+          <!-- main-mail-menu -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-xl-9 col-md-12">
+    <div class="card">
+      <div class="main-content-body main-content-body-mail card-body">
+        <div class="main-mail-header">
+          <div>
+            <h4 class="main-content-title mb-2">Inbox</h4>
+            <p>You have 2 unread messages</p>
+          </div>
+          <div>
+            <span>1-50 of 1200</span>
+            <div class="btn-group" role="group">
+              <button class="btn btn-outline-secondary disabled" type="button">
+                <i class="icon ion-ios-arrow-back"></i>
+              </button>
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="icon ion-ios-arrow-forward"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- main-mail-list-header -->
+        <div class="main-mail-options">
+          <label class="ckbox"><input id="checkAll" type="checkbox" (change)="selectAll($event)" > <span>Select All</span></label>
+          <div class="btn-group ms-auto">
+            <button class="btn btn-light"><i class="bx bx-refresh"></i></button>
+            <button class="btn btn-light ">
+              <i class="bx bx-archive"></i>
+            </button>
+            <button class="btn btn-light ">
+              <i class="bx bx-info-circle"></i>
+            </button>
+            <button class="btn btn-light ">
+              <i class="bx bx-trash"></i>
+            </button>
+            <button class="btn btn-light ">
+              <i class="bx bx-folder-open"></i>
+            </button>
+            <button class="btn btn-light ">
+              <i class="bx bx-purchase-tag-alt"></i>
+            </button>
+          </div>
+          <!-- btn-group -->
+        </div>
+        <!-- main-mail-options -->
+        <div class="main-mail-list">
+          @for (mail of mailData; track $index) {
+          <div class="main-mail-item" [ngClass]="{'unread': mail.isUnread}">
+            <div class="main-mail-checkbox" >
+              <label class="ckbox">
+                <input type="checkbox" [(ngModel)]="mail.isChecked" /> <span></span>
+              </label>
+            </div>
+            <div class="main-mail-star" [ngClass]="{'active': mail.isStarred}">
+              <i class="typcn typcn-star"></i>
+            </div>
+            <div class="main-img-user">
+              <img [src]="mail.profileImage" alt="" class="online" />
+            </div>
+            <div class="main-mail-body">
+              <div class="main-mail-from">{{ mail.userName }}</div>
+              <div class="main-mail-subject">
+                <strong>{{ mail.subject }}</strong>
+                <span>{{ mail.description }}</span>
+              </div>
+            </div>
+            @if (mail.hasAttachment) {
+            <div class="main-mail-attachment">
+              <i class="typcn typcn-attachment"></i>
+            </div>
+          }
+            <div class="main-mail-date">{{ mail.time }}</div>
+          </div>
+        }
+        </div>
+        <div class="mg-lg-b-30"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->

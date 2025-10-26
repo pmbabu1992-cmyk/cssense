@@ -1,0 +1,15 @@
+
+    <!--Page Widget -->
+    <div [ngClass]="['card', 'mb-4', 'border', cardType === 'success' ? 'border-success' : cardType === 'danger' ? 'border-danger' : 'border-warning']">
+      <div [ngClass]="['card-body', cardType === 'success' ? 'text-success' : cardType === 'danger' ? 'text-danger' : 'text-warning', 'text-center']">
+        <div class="{{cardType}}-widget">
+          <h4 class="text-{{cardType}}">{{ title }}</h4>
+          <p class="mt-3 mb-0">
+            {{ message }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--Page Widget -->
+ 
+  

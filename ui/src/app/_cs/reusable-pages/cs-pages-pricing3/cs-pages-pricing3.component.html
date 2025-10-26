@@ -1,0 +1,21 @@
+
+    <div class="panel price panel-color">
+      <div [class]="panelColor + ' p-0 text-center'">
+        <h4 class="text-fixed-white price-heading">{{ planName }}</h4>
+      </div>
+      <div class="panel-body text-center">
+        <p class="lead py-3"><strong>{{ price }}</strong> / month</p>
+      </div>
+      <ul class="list-group list-group-flush text-center">
+        @for (feature of features; track $index) {
+        <li class="list-group-item">
+          <strong>{{ feature.split(' ')[0] }}</strong> {{ feature.split(' ').slice(1).join(' ') }}
+        </li>
+    }
+      </ul>
+      <div class="panel-footer text-center">
+        <a href="javascript:void(0);" [class]="'btn ' + buttonColor + ' btn-block w-100'">{{ buttonText }}</a>
+      </div>
+    </div>
+
+  

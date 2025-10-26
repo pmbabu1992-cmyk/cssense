@@ -1,0 +1,26 @@
+
+    <div class="card">
+      <div class="card-body iconfont text-start">
+        <div class="d-flex justify-content-between">
+          <h4 class="card-title mb-3">{{ title }}</h4>
+        </div>
+        <div class="d-flex mb-0">
+          <div>
+            <h4 class="mb-1 fw-bold">
+              {{ value }} <span class="{{ percentage[0] === '-' ? 'text-danger' : 'text-success' }} fs-13 ms-2">({{ percentage }})</span>
+            </h4>
+            <p class="mb-2 fs-12 text-muted">{{ description }}</p>
+          </div>
+          <div class="card-chart rounded-circle ms-auto mt-0 bg-{{progressBarClass}}-transparent">
+            <i [ngClass]="iconClass + ' ' + iconColorClass" class="fs-24"></i>
+          </div>
+        </div>
+  
+        <div class="progress progress-xs mb-1" role="progressbar" [attr.aria-valuenow]="progressPercentage" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar bg-{{progressBarClass}}" [style.width.%]="progressPercentage"></div>
+        </div>
+        <small class="mb-0 text-muted">Monthly <span class="float-end text-muted">{{ progressPercentage }}%</span></small>
+      </div>
+    </div>
+
+  

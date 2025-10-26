@@ -1,0 +1,121 @@
+<app-page-header [title]="'Blog Post'"
+  [items]="['Blog pages']"
+  [active_item]="'Blog Post'"
+ />
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-md-12">
+    <div class="card blog-edit">
+      <div class="card-body">
+        <div class="form-group mb-3">
+          <label class="form-label text-dark">Course Title</label>
+          <input type="text" class="form-control" value="Advanced Web Development">
+        </div>
+        <div href="javascript:void(0);" class="form-group mb-3">
+          <label class="form-label text-dark">Category</label>
+          <cs-ng-select 
+          [options]="BlogCategory"
+          [selectClass]="'form-control'"
+          [clearable]="true"
+          [searchable]="true"
+          [hideSelected]="true"
+          [placeholder]="'IT'"
+          [additionalProperties]="{}">
+          </cs-ng-select>
+        </div>
+        <div  class="form-group mb-3">
+          <label class="form-label text-dark">Instructor</label>
+          <cs-ng-select 
+          [options]="Instructor"
+          [selectClass]="'form-control'"
+          [clearable]="true"
+          [searchable]="true"
+          [hideSelected]="true"
+          [placeholder]="'Predro Cox'"
+          [additionalProperties]="{}">
+          </cs-ng-select>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label text-dark">Type of mode</label>
+          <div class="d-md-flex ad-post-details">
+            <label class="custom-control form-radio mb-2 me-4">
+              <input type="radio" class="form-check-input" name="radios2" value="option1" checked="">
+              <span class="custom-control-label"><a href="javascript:void(0);" class="ms-2">Online </a></span>
+            </label>
+            <label class="custom-control form-radio mb-2">
+              <input type="radio" class="form-check-input" name="radios2" value="option2" >
+              <span class="custom-control-label"><a href="javascript:void(0);" class="ms-2">Offline</a></span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <div class="ql-wrapper ql-wrapper-demo mb-3">
+            <label class="form-label">Product Description</label>
+            <div id="editor">
+              <quill-editor></quill-editor>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label text-dark">Course Type</label>
+          <div class="d-md-flex ad-post-details">
+            <label class="custom-control form-radio mb-2 me-4">
+              <input type="radio" class="form-check-input" name="radios12" value="option1" checked="">
+              <span class="custom-control-label"><a href="javascript:void(0);" class="ms-2">Free </a></span>
+            </label>
+            <label class="custom-control form-radio  mb-2">
+              <input type="radio" class="form-check-input" name="radios12" value="option2" >
+              <span class="custom-control-label"><a href="javascript:void(0);" class="ms-2">Paid</a></span>
+            </label>
+          </div>
+        </div>
+        <label class="form-label">Upload File</label>
+        <div class="p-4 border rounded-6 mb-4 form-group">
+          <div>
+            @if(type === 'component'){
+              <dropzone  class="dropzone-container flex" [config]="config"
+              [disabled]="disabled" [message]="'Click or drag images here to upload'"
+              (init)="onUploadInit($event)" (error)="onUploadError($event)"
+              (success)="onUploadSuccess($event)"></dropzone>
+          }
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Upload Video URL</label>
+          <input type="text" class="form-control" placeholder="https://videos.com" value="https://www.youtube.com/embed/tMWkeBIohBs">
+        </div>
+        <div class="control-group form-group  mb-0">
+          <label class="form-label text-dark">Course Post Package</label>
+          <div class=" border p-3 rounded-7">
+            <div class="d-md-flex ad-post-details">
+              <label class="custom-control form-radio mb-0 me-5">
+                <input type="radio" class="form-check-input" name="radios1" value="option7">
+                <span class="custom-control-label ms-2">30 Days Free</span>
+              </label>
+              <label class="custom-control form-radio  mb-0 me-4">
+                <input type="radio" class="form-check-input" name="radios1" value="option8" checked="">
+                <span class="custom-control-label ms-2">60 days / <span class="font-weight-bold">$20</span></span>
+              </label>
+              <label class="custom-control form-radio  mb-0 me-4">
+                <input type="radio" class="form-check-input" name="radios1" value="option9">
+                <span class="custom-control-label ms-2">6months / <span class="font-weight-bold">$50</span></span>
+              </label>
+              <label class="custom-control form-radio  mb-0">
+                <input type="radio" class="form-check-input" name="radios1" value="option10">
+                <span class="custom-control-label ms-2">1 year / <span class="font-weight-bold">$80</span></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <a href="javascript:void(0);" class="btn btn-secondary">Save to Draft</a>
+        <a href="javascript:void(0);" class="btn btn-primary float-end">Publish Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->
+
+

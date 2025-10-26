@@ -1,0 +1,76 @@
+<!-- Page Header -->
+<app-page-header [title]="'Widget Notification'"
+  [items]="['Apps']"
+  [active_item]="'Widget Notification'"
+ />
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  @for (card of messageCards; track $index) {
+    <div class="col-lg-6 col-md-12 col-xl-4">
+  <cs-notification-card1
+  [title]="card.title"
+  [message]="card.message"
+  [cardType]="card.cardType">
+    </cs-notification-card1>
+  </div>
+  }
+  @for (card of messageCards1; track $index) {
+      <div class="col-lg-6 col-md-6 col-xl-4">
+  <cs-notification-card2
+  [title]="card.title"
+  [IconClass]="card.IconClass"
+  [BgColor]="card.BgColor">
+</cs-notification-card2>
+</div>
+}
+</div>
+<!-- End::row-1 -->
+
+<!-- Start::row-2 -->
+<div class="row">
+  @for (card of messageCards1; track $index) {
+  <div class="col-lg-6 col-md-6 col-xl-4">
+    <cs-notification-card3
+    [title]="card.title"
+    [IconClass]="card.IconClass"
+    [BgColor]="card.BgColor">
+  </cs-notification-card3>
+      <!--Page Widget Error-->
+  </div>
+}
+ 
+</div>
+<!-- End::row-2 -->
+
+<!-- Start::row-3 -->
+<div class="row">
+  @for (alert of messageCards3;track $index;let i = $index) {
+    <div class="col-lg-6 col-md-6 col-xl-4">
+  <cs-notification-card4
+    [title]="alert.title"
+    [message]="alert.message"
+    [alertType]="alert.alertType"
+    [isClosed]="alert.isClosed"
+    (closeAlert)="closeAlert(i)">
+  </cs-notification-card4>
+  </div>
+}
+</div>
+<!-- End::row-3 -->
+
+<!-- Start::row-4 -->
+<div class="row">
+  @for (card of messageCards4; track $index) {
+  <div class="col-lg-6 col-md-6 col-xl-4">
+    <cs-notification-card5
+    [title]="card.title"
+    [subTitle]="card.subTitle"
+    [imageWidth]="card.imageWidth"
+    [images]="card.images">
+  </cs-notification-card5>
+  </div>
+}
+</div>
+<!-- End::row-4 -->

@@ -1,0 +1,162 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "CS": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "allowedCommonJsDependencies": [
+              "dayjs",
+              "dayjs/plugin/customParseFormat",
+              "moment",
+              "inputmask",
+              "filepond",
+              "rfdc",
+              "sweetalert2",
+              "dayjs/plugin/isBetween",
+              "dayjs/plugin/isSameOrAfter",
+              "dayjs/plugin/isoWeek",
+              "mousetrap", 
+              "leaflet",
+              "dropzone",
+              "apexcharts",
+              "dragula",
+              "can-use-dom"
+            ],
+            "outputPath": {
+              "base": "dist/cs"
+            },
+            "index": "src/index.html",
+            "polyfills": [
+              "zone.js",
+              "src/polyfills.ts",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [ 
+            "src/favicon.ico",{
+              "glob": "**/*",
+               "input": "public"
+            },
+              "src/.htaccess"
+          ],
+            "styles": [
+              "src/styles.scss","./node_modules/swiper/swiper-bundle.min.css",
+              "./node_modules/ngx-easy-table/style.css",
+               "./node_modules/ngx-toastr/toastr.css"
+            ],
+            "scripts": [
+              "./node_modules/keen-slider/keen-slider.js"
+            ],
+            "browser": "src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": false,
+              "namedChunks": true,
+              "aot": true 
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {  
+            "production": {
+              "buildTarget": "CS:build:production"
+            },
+            "development": {
+              "buildTarget": "CS:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "CS:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "src/polyfills.ts",
+              "@angular/localize/init"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [ 
+            "src/favicon.ico",{
+              "glob": "**/*",
+              "input": "public"
+            }],
+            "styles": ["src/styles.scss"],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
+  }
+}

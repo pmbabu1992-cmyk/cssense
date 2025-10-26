@@ -1,0 +1,111 @@
+<!-- Page Header -->
+<app-page-header [title]="'Chartjs'"
+  [items]="['Charts']"
+  [active_item]="'Chartjs'"
+ />
+<!-- Page Header Close -->
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Line Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-line" [data]="lineChartData" [options]="lineChartOptions"
+                  [type]="lineChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Bar Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-bar" [data]="barChartData" [options]="barChartOptions"
+                  [type]="barChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Pie Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-pie" [data]="PieChartData" [options]="PieChartOptions"
+                  [type]="PieChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Doughnut Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-doughnut" [data]="PieChartData" [options]="PieChartOptions"
+                  [type]="DoughnutChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Mixed Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-mixed" [data]="barChart2Data" [options]="barChart2Options"
+                  [type]="barChart2Type">
+              </cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Scatter Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-scatter" [data]="scatterchartData" [options]="ScatterchartOptions"
+                  [type]="ScatterchartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Polar Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-polar" [data]="polarChartData" [options]="polarChartOptions"
+                  [type]="polarChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Radial Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-radar" [data]="radarChartData" [options]="radarChartOptions"
+                  [type]="radarChartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Chartjs Bubble Chart</div>
+          </div>
+          <div class="card-body">
+              <cs-chartjs id="chartjs-bubble" [data]="bubblechartData" [options]="bubblechartOptions"
+                  [type]="bubblechartType"></cs-chartjs>
+          </div>
+      </div>
+  </div>
+</div>
+<!--End::row-1 -->

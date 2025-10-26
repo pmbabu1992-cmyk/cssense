@@ -1,0 +1,25 @@
+
+    <div class="card p-3">
+      <div class="card-body">
+        <!-- Team Member Image -->
+        <div class="mb-3 text-center about-team">
+          <img
+            class="rounded-circle avatar avatar-xl"
+            [src]="imageSrc"
+            alt="image"
+          />
+        </div>
+        <!-- Team Member Name -->
+        <div class="fs-16 text-center fw-semibold">{{ name }}</div>
+        <!-- Team Member Role -->
+        <div class="fs-14 text-center text-muted mb-3">{{ role }}</div>
+        <!-- Team Member Description -->
+        <div class="text-center fs-14 mb-3">
+          {{ description }}
+        </div>
+        <!-- Social Media Links -->
+        <p class="text-center mb-0"><i class="fe fe-facebook text-primary me-3"></i><i class="fe fe-instagram text-success me-3"></i><i class="fe fe-globe text-info"></i></p>
+      </div>
+    </div>
+
+  

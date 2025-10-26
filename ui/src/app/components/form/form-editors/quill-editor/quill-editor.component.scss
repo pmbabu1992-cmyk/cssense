@@ -1,0 +1,39 @@
+::ng-deep {
+  .NgxEditor {
+    overflow: auto;
+  }
+  .NgxEditor__Content blockquote {
+    border-left: 3px solid var(--default-border) !important;
+  }
+  .NgxEditor__MenuItem:hover {
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__Dropdown .NgxEditor__Dropdown--Selected,
+  .NgxEditor__Dropdown .NgxEditor__Dropdown--Open {
+    color: rgb(var(--primary-rgb)) !important;
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__Dropdown .NgxEditor__Dropdown--DropdownMenu {
+    background-color: var(--custom-white) !important;
+  }
+  .NgxEditor__Dropdown .NgxEditor__Dropdown--Item:hover {
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__Dropdown .NgxEditor__Dropdown--Active {
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__Dropdown:hover {
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__MenuItem.NgxEditor__MenuItem--Active,
+  .NgxEditor__MenuItem .NgxEditor__MenuItem--Active {
+    color: rgb(var(--primary-rgb)) !important;
+    background-color: rgb(var(--light-rgb)) !important;
+  }
+  .NgxEditor__Popup {
+    background-color: var(--custom-white) !important;
+  }
+  .angular-editor-toolbar .angular-editor-toolbar-set .angular-editor-button {
+    margin-inline-end: -1px;
+  }
+}

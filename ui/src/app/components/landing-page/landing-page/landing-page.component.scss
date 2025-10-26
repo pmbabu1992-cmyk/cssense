@@ -1,0 +1,34 @@
+::ng-deep {
+
+  .open {
+    .slide-menu.child1.active {
+      display: block !important;
+    }
+  }
+
+  .child2.open,
+  .child3.open {
+    display: block !important;
+  }
+
+  .light {
+    @media (min-width: 992px) {
+      [data-menu-styles="dark"][data-nav-layout="horizontal"]
+        .app-sidebar
+        .slide.has-sub
+        .slide-menu.child1 {
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+      }
+    }
+  }
+  
+  // @media (min-width: 992px){
+  //   [data-nav-style=menu-click][data-nav-layout=horizontal]{
+  //     .landing-body.app-sidebar.side-menu__item.active.side-menu__label{
+  //         color: #ffff !important;
+  //     }
+  //   }
+  // }
+
+  
+}

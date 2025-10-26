@@ -1,0 +1,56 @@
+<app-page-header [title]="'Color Pickers'"
+  [items]="['Form Elements']"
+  [active_item]="'Color Pickers'"
+ />
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-3">
+    <app-showcode-card [title]="'Bootstrap Color Picker'" [prism]="prismCode.colorpickerTS">
+        <input
+          type="color"
+          class="form-control form-control-color border-0"
+          id="exampleColorInput"
+          value="#136ad0"
+          title="Choose your color"
+        />
+    </app-showcode-card>
+  </div>
+  <div class="col-xl-9">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Classic</div>
+      </div>
+      <div class="card-body d-sm-flex justify-content-between">
+        <div>
+          <div class="theme-container"></div>
+          <div class="pickr-container example-picker">
+            <div class="pickr">
+              <input class="pcr-button" [value]="color2"
+        [style.background]="color2"
+        [cpOutputFormat]="'rgba'"
+        [(colorPicker)]="color2"/>
+           </div>
+          </div>
+        </div>
+        <div class="mt-3 mt-sm-0">
+          <div class="theme-container1"></div>
+          <div class="pickr-container1 example-picker">
+            <ngx-colors ngx-colors-trigger [(ngModel)]="color3" acceptLabel="Select" cancelLabel="Cancel">
+            </ngx-colors>
+          </div>
+        </div>
+        <div class="mt-3 mt-sm-0">
+          <div class="theme-container2"></div>
+          <div class="pickr-container2 example-picker">
+            <div class="example-palette-button" ngx-colors-trigger [(ngModel)]="input1"
+            [style.color]="input1">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="palette">
+            </mat-icon>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

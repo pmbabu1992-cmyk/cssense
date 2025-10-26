@@ -1,0 +1,134 @@
+<!-- Page Header -->
+<app-page-header [title]="'Apex Area Charts'"
+  [items]="['Apex Charts']"
+  [active_item]="'Apex Area Charts'"
+ />
+<!-- Page Header Close -->
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Basic Area Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="chart">
+                  <cs-apexcharts [chartOptions]="BasicAreaChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Spline Area Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="area-spline"  class="chart-container1">
+                  <cs-apexcharts [chartOptions]="SplineAreaChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Area Chart With Negative Values</div>
+          </div>
+          <div class="card-body">
+              <div id="area-negative"  class="chart-container2">
+                  <cs-apexcharts [chartOptions]="NegativeValuesChartData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Selection-Github Style Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="chart-months"  class="">
+                  <apx-chart [series]="chartMonths.series" [chart]="chartMonths.chart"
+                  [colors]="chartMonths.colors" [yaxis]="chartMonths.yaxis"
+                  [dataLabels]="commonOptions.dataLabels" [fill]="commonOptions.fill"
+                  [stroke]="commonOptions.stroke" [xaxis]="commonOptions.xaxis"[colors]="chartMonths.colors"></apx-chart>
+              </div>
+              <div class="github-style d-flex align-items-center">
+                  <div class="me-2">
+                      <img class="userimg rounded" src="./assets/images/faces/1.jpg" data-hoverbox-user-id="634573" alt="" width="38" height="38">
+                  </div>
+                  <div class="userdetails lh-1">
+                      <a class="username fw-medium fs-14">coder</a>
+                      <span class="cmeta d-block mt-1">
+                          <span class="commits"></span> 95 commits
+                      </span>
+                  </div>
+              </div>
+              <div id="chart-years"  class="chart-container4">
+                  <apx-chart [series]="chartYears.series" [chart]="chartYears.chart" [colors]="chartYears.colors"
+                          [legend]="chartYears.legend" [dataLabels]="commonOptions.dataLabels"
+                          [fill]="commonOptions.fill" [stroke]="commonOptions.stroke"
+                          [xaxis]="commonOptions.xaxis" [colors]="chartYears.colors"></apx-chart>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Stacked Area Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="area-stacked"  class="chart-container5">
+                  <cs-apexcharts [chartOptions]="StackedAreachartData"></cs-apexcharts>
+            
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Irregular Time Series Chart</div>
+          </div>
+          <div class="card-body">
+              <div id="area-irregular"  class="chart-container6">
+                  <cs-apexcharts [chartOptions]="IrregularTimeChartData"></cs-apexcharts>
+            
+              </div>
+                          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+      <div class="card custom-card">
+          <div class="card-header">
+              <div class="card-title">Area Chart With Null Values</div>
+          </div>
+          <div class="card-body">
+              <div id="area-null"  class="chart-container7">
+                  <cs-apexcharts [chartOptions]="AreaChartNullValueData"></cs-apexcharts>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-header d-sm-flex">
+        <div class="card-title">Area Chart-Datetime X-Axis Chart</div>
+        <div class="btn-group ms-auto">
+          <button class="btn btn-primary btn-sm" id="one_month">1M</button>
+          <button class="btn btn-primary btn-sm" id="six_months">6M</button>
+          <button class="btn btn-primary btn-sm" id="one_year">1Y</button>
+          <button class="btn btn-primary btn-sm" id="all">ALL</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="area-datetime">
+          <cs-apexcharts [chartOptions]="AreaxAxisChartData"></cs-apexcharts>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->

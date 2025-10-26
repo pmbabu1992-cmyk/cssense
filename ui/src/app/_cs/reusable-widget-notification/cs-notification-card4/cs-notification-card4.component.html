@@ -1,0 +1,14 @@
+
+    <div *ngIf="!isClosed" [ngClass]="{'bg-danger-transparent': alertType === 'danger','bg-success-transparent': alertType === 'success','bg-info-transparent': alertType === 'info','alert': true,'p-0': true,'card': true,'border-0': true,'mb-4': true}" class="alert">
+      <div class="card-header d-flex align-items-center" [ngClass]="{'text-danger': alertType === 'danger','text-success': alertType === 'success','text-info': alertType === 'info','fw-bold': true}">
+        <i class="me-2 far" [ngClass]="{'fa-times-circle': alertType === 'danger','fa-check-circle': alertType === 'success','fa-question-circle': alertType === 'info'}"></i> {{ title }}
+        <button type="button" class="btn-close ms-auto p-0" (click)="close()" [attr.aria-expanded]="!isClosed" aria-label="Close">
+          <i class="bi bi-x" [ngClass]="{'text-danger': alertType === 'danger','text-success': alertType === 'success','text-info': alertType === 'info'}"></i>
+        </button>
+      </div>
+      <div class="card-body" [ngClass]="{'text-danger': alertType === 'danger','text-success': alertType === 'success','text-info': alertType === 'info'}">
+        <strong>{{ message }}</strong>
+      </div>
+    </div>
+
+  

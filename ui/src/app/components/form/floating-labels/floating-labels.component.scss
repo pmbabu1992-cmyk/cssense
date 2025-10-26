@@ -1,0 +1,15 @@
+::ng-deep {
+  .mdc-text-field--filled:not(.mdc-text-field--disabled)
+    .mdc-line-ripple::before {
+    border-bottom-color: transparent !important;
+  }
+  .mat-mdc-select {
+    color: var(--default-text-color) !important;
+  }
+  .mat-mdc-select-placeholder {
+    color: var(--default-text-color) !important;
+  }
+  .cdk-overlay-container {
+    z-index: 99 !important;
+  }
+}

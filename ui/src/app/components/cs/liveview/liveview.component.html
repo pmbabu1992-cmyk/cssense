@@ -1,0 +1,537 @@
+<div class="surface-section">
+  <!-- Mode Switch -->
+  <!-- <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+    <div class="btn-group">
+      <button pButton class="btn btn-sm"
+              [class.btn-primary]="viewMode==='cards'"
+              [class.btn-outline-primary]="viewMode!=='cards'"
+              (click)="switchView('cards')">
+        <i class="bi bi-grid-3x3-gap me-2"></i>Cards
+      </button>
+
+      <button pButton class="btn btn-sm"
+              [class.btn-primary]="viewMode==='table'"
+              [class.btn-outline-primary]="viewMode!=='table'"
+              (click)="switchView('table')">
+        <i class="bi bi-table me-2"></i>Table
+      </button>
+    </div>
+    <div *ngIf="viewMode==='cards'" class="d-flex align-items-center gap-2">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <div class="form-check">
+          <input id="cardMasterAll" class="form-check-input" type="checkbox"
+                 [checked]="isAllSelected()"
+                 [indeterminate]="isSomeSelected()"
+                 (change)="toggleSelectAll($any($event.target).checked)">
+          <label for="cardMasterAll" class="form-check-label">
+            Select all ({{ rows().length }})
+          </label>
+        </div>
+        <div class="text-muted small ms-3">
+          Selected: {{ selectedIds().size }}
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- <div class="d-flex flex-wrap align-items-center mb-3 gap-2">
+  <div class="btn-group me-2">
+    <button pButton class="btn btn-sm"
+            [class.btn-primary]="viewMode==='cards'"
+            [class.btn-outline-primary]="viewMode!=='cards'"
+            (click)="switchView('cards')">
+      <i class="bi bi-grid-3x3-gap me-2"></i>Cards
+    </button>
+
+    <button pButton class="btn btn-sm"
+            [class.btn-primary]="viewMode==='table'"
+            [class.btn-outline-primary]="viewMode!=='table'"
+            (click)="switchView('table')">
+      <i class="bi bi-table me-2"></i>Table
+    </button>
+  </div>
+  <div *ngIf="viewMode==='cards'" class="ms-auto d-flex align-items-center gap-3">
+    <div class="form-check mb-0">
+      <input
+        id="cardMasterAll"
+        class="form-check-input"
+        type="checkbox"
+        [checked]="isAllSelected()"
+        [indeterminate]="isSomeSelected()"
+        (change)="toggleSelectAll($any($event.target).checked)">
+      <label for="cardMasterAll" class="form-check-label">
+        Select all ({{ rows().length }})
+      </label>
+    </div>
+
+    <small class="text-muted">Selected: {{ selectedIds().size }}</small>
+  </div>
+</div> -->
+
+<div class="d-flex flex-wrap align-items-center mb-3 gap-2">
+  <!-- Left: cards master checkbox + count (only in cards view) -->
+  <div *ngIf="viewMode==='cards'" class="d-flex align-items-center gap-3">
+    <div class="form-check mb-0">
+      <input
+        id="cardMasterAll"
+        class="form-check-input"
+        type="checkbox"
+        [checked]="isAllSelected()"
+        [indeterminate]="isSomeSelected()"
+        (change)="toggleSelectAll($any($event.target).checked)">
+      <label for="cardMasterAll" class="form-check-label">
+        Select all ({{ rows().length }})
+      </label>
+    </div>
+    <small class="text-muted">Selected: {{ selectedIds().size }}</small>
+  </div>
+
+  <!-- Right: view mode buttons -->
+  <div class="ms-auto btn-group">
+    <button pButton class="btn btn-sm"
+            [class.btn-primary]="viewMode==='cards'"
+            [class.btn-outline-primary]="viewMode!=='cards'"
+            (click)="switchView('cards')">
+      <i class="bi bi-grid-3x3-gap me-2"></i>Cards
+    </button>
+
+    <button pButton class="btn btn-sm"
+            [class.btn-primary]="viewMode==='table'"
+            [class.btn-outline-primary]="viewMode!=='table'"
+            (click)="switchView('table')">
+      <i class="bi bi-table me-2"></i>Table
+    </button>
+  </div>
+</div>
+
+
+  <!-- Top bar -->
+<!-- Top bar (themed with cs-dropdowns + Bootstrap input-group) -->
+<div class="d-flex flex-wrap align-items-center gap-2 mb-3 w-100">
+
+<div class="input-group input-group-md" style="max-width:28rem;">
+  <span class="input-group-text bg-body-secondary border-end-0">
+    <i class="bi bi-search"></i>
+  </span>
+
+  <!-- <input
+    type="text"
+    class="form-control border-start-0 border-end-0"
+    placeholder="Search devices, IDs, locations..."
+    aria-label="Search"
+    [(ngModel)]="searchText"
+    (keyup.enter)="applyGlobalSearch()"
+  /> -->
+<input
+    type="text"
+    class="form-control border-start-0 border-end-0"
+    placeholder="Search devices, IDs, locations..."
+    aria-label="Search"
+    [(ngModel)]="searchText"
+    (ngModelChange)="onSearchChange($event)"
+  />
+  <button class="btn btn-primary border-start-0" type="button" (click)="applyGlobalSearch()">
+    Search
+  </button>
+</div>
+
+
+
+  <!-- Status -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'statusDd'"
+    [class]="' btn-outline-primary dropdown-toggle'"
+    [title]="statusFilter ? 'Status: ' + statusFilter : 'All Status'"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of statusOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setStatus(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- Type -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'typeDd'"
+    [class]="' btn-outline-primary dropdown-toggle'"
+    [title]="typeFilter ? 'Type: ' + typeFilter : 'All Types'"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of typeOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setType(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- Temp -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'tempDd'"
+    [class]="' btn-outline-primary dropdown-toggle'"
+    [title]="tempFilterLabel()"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of tempOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setTemp(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- CPU -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'cpuDd'"
+    [class]="' btn-outline-primary dropdown-toggle'"
+    [title]="cpuFilterLabel()"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of cpuOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setCpu(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- Alerts -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'alertsDd'"
+    [class]="' btn-outline-primary dropdown-toggle'"
+    [title]="alertsFilter ? (alertsFilter==='has' ? 'Has Alerts' : 'No Alerts') : 'All Alerts'"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of alertOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setAlerts(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- Sort By -->
+  <cs-dropdowns
+    [Customclass]="'dropdown'"
+    [Id]="'sortDd'"
+    [class]="' btn-outline-secondary dropdown-toggle'"
+    [title]="'Sort: ' + sortFieldLabel()"
+    [Menuclass]="'dropdown-menu'">
+    @for(opt of sortByOptions; track $index) {
+      <li>
+        <a ngbDropdownItem class="dropdown-item"
+           href="javascript:void(0);"
+           (click)="setSortField(opt.value)">{{ opt.label }}</a>
+      </li>
+    }
+  </cs-dropdowns>
+
+  <!-- Clear -->
+  <button class="btn btn-outline-danger ms-auto" type="button" (click)="clearAll()">
+    <i class="bi bi-x-lg me-1"></i> Clear Filters
+  </button>
+</div>
+
+
+  <!-- Sort order -->
+  <!-- <div class="flex items-center gap-2 mb-2">
+    <span class="text-color-secondary">Sort Order:</span>
+    <button pButton label="Ascending"  (click)="sortOrder = 1;  applySort()" class="p-button-sm p-button-info"></button>
+    <button pButton label="Descending" (click)="sortOrder = -1; applySort()" class="p-button-sm p-button-outlined"></button>
+    <span class="ml-auto text-sm text-color-secondary">{{ rows().length }} devices</span>
+  </div> -->
+    <span class="ml-auto text-sm text-color-secondary">{{ rows().length }} devices</span>
+
+
+  <!-- ===== CARDS VIEW ===== -->
+  <div *ngIf="viewMode==='cards'">
+    <div class="row g-3">
+      @for (d of cardPageItems(); track d.id) {
+      <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+        <div class="card custom-card h-100 position-relative">
+          <div class="card-body d-flex flex-column h-100">
+            <div class="flex-grow-1">
+
+              <!-- Title + per-card checkbox -->
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <div class="me-2 d-flex align-items-start gap-2">
+                  <input type="checkbox"
+                         class="form-check-input mt-1"
+                         [checked]="isSelected(d)"
+                         (change)="toggleCard(d, $any($event.target).checked)">
+                  <div>
+                    <h5 class="mb-1 fw-semibold">{{ d.name }}</h5>
+                    <div class="text-muted small">{{ d.id }}</div>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-1">
+                  <i class="bi"
+                     [ngClass]="{
+                       'bi-check-circle text-success': d.status==='Online',
+                       'bi-exclamation-circle text-warning': d.status==='Warning',
+                       'bi-wifi-off text-danger': d.status==='Offline'
+                     }"></i>
+                  <span class="small"
+                        [ngClass]="{
+                          'text-success': d.status==='Online',
+                          'text-warning': d.status==='Warning',
+                          'text-danger': d.status==='Offline'
+                        }">{{ d.status }}</span>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="text-muted mb-3">
+                <i class="bi bi-circle-fill me-2" style="font-size:.45rem"></i>{{ d.location }}
+              </div>
+
+              <!-- ONLINE/WARNING metrics -->
+              <ng-container *ngIf="d.status !== 'Offline'; else offlineBlock">
+                <!-- CPU -->
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <div><i class="bi bi-gear me-2"></i>CPU</div><div>{{ d.cpu }}%</div>
+                  </div>
+                  <cs-progressbar [value]="d.cpu" size="sm" [showLabel]="false"
+                                  [progressClass]="'mb-0'" [barClass]="'progress-bar bg-primary'"></cs-progressbar>
+                </div>
+                <!-- Memory -->
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <div><i class="bi bi-hdd me-2"></i>Memory</div><div>{{ d.mem }}%</div>
+                  </div>
+                  <cs-progressbar [value]="d.mem" size="sm" [showLabel]="false"
+                                  [progressClass]="'mb-0'" [barClass]="'progress-bar bg-info'"></cs-progressbar>
+                </div>
+                <!-- Temperature -->
+                <div class="mb-2">
+                  <div class="d-flex justify-content-between small mb-1">
+                    <div><i class="bi bi-thermometer-half me-2"></i>Temperature</div><div>{{ d.temp }}°C</div>
+                  </div>
+                  <cs-progressbar [value]="d.temp" size="sm" [showLabel]="false"
+                                  [progressClass]="'mb-0'" [barClass]="'progress-bar bg-warning'"></cs-progressbar>
+                </div>
+                <!-- Uptime -->
+                <div class="small mt-2">
+                  <span class="text-muted me-1">Uptime</span>{{ d.uptime | number:'1.0-1' }}%
+                </div>
+              </ng-container>
+
+              <!-- OFFLINE -->
+              <ng-template #offlineBlock>
+                <div class="d-flex flex-column align-items-center justify-content-center my-5 py-2">
+                  <i class="bi bi-wifi-off mb-2" style="font-size:2rem; opacity:.6;"></i>
+                  <div class="fw-semibold mb-1">Device offline</div>
+                  <div class="text-muted small">Last seen: {{ d.lastUpdate }}</div>
+                </div>
+              </ng-template>
+
+              <!-- <hr class="my-3" />
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div class="text-muted small">Updated: {{ d.lastUpdate }}</div>
+
+                <div class="text-muted small d-flex align-items-center" *ngIf="d.status==='Offline'">
+                  <i class="bi bi-wifi-off me-1"></i>Device offline
+                </div>
+                <div class="ms-auto" *ngIf="d.alerts > 0">
+                  <span class="icon-badges">
+                    <i class="bi bi-bell icon"></i>
+                    <span class="badge rounded-pill bg-danger">{{ d.alerts }}</span>
+                  </span>
+                </div>
+              </div> -->
+            </div>
+            <!-- <div class="mt-3">
+              <button pButton label="View Details" class="w-100"
+                      (click)="actionItems(d)[0].command?.()"></button>
+            </div> -->
+            <!-- Push footer to the bottom of the card -->
+<div class="mt-auto">
+
+  <hr class="my-3" />
+
+  <!-- Footer row -->
+  <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+    <div class="text-muted small">Updated: {{ d.lastUpdate }}</div>
+
+    <div class="text-muted small d-flex align-items-center" *ngIf="d.status==='Offline'">
+      <i class="bi bi-wifi-off me-1"></i>Device offline
+    </div>
+
+    <!-- Bottom-right icon + pill (always just above the button) -->
+    <div class="ms-auto" *ngIf="d.alerts > 0">
+      <span class="icon-badges">
+        <i class="bi bi-bell icon"></i>
+        <span class="badge rounded-pill bg-danger">{{ d.alerts }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Button pinned at absolute bottom of content -->
+  <div class="mt-3">
+    <button
+      pButton
+      label="View Details"
+      class="w-100"
+      (click)="actionItems(d)[0].command?.()">
+    </button>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+    <!-- Cards paginator -->
+    <!-- <p-paginator
+      [first]="cardFirst()"
+      [rows]="cardRowsPerPage()"
+      [totalRecords]="rows().length"
+      [rowsPerPageOptions]="[8,12,16,20]"
+      (onPageChange)="onCardPage($event)"
+      class="mt-3">
+    </p-paginator> -->
+    <p-paginator
+      [first]="cardFirst()"
+      [rows]="cardRowsPerPage()"
+      [totalRecords]="cardFiltered().length"
+      [rowsPerPageOptions]="[8,12,16,20]"
+      (onPageChange)="onCardPage($event)"
+      class="mt-3">
+    </p-paginator>
+  </div>
+
+  <!-- ===== TABLE VIEW ===== -->
+  <div *ngIf="viewMode==='table'">
+    <p-table
+      #dt
+      [value]="rows()"
+      dataKey="id"
+      [(selection)]="selectedRows"
+      (selectionChange)="onTableSelectionChange($event)"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[10,20,50]"
+      [totalRecords]="rows().length"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first}–{last} of {totalRecords}"
+      [globalFilterFields]="['name','id','location','type','status']"
+      [sortField]="sortField"
+      [sortOrder]="sortOrder"
+      [responsiveLayout]="'scroll'"
+      [rowHover]="true"
+      [resizableColumns]="true"
+      [columnResizeMode]="'fit'">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:3rem" class="text-center">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th pResizableColumn pSortableColumn="name">Device
+            <p-sortIcon field="name"></p-sortIcon>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="status">Status
+            <p-sortIcon field="status"></p-sortIcon>
+            <p-columnFilter field="status" display="menu" [showMatchModes]="false" [showOperator]="false">
+              <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                <p-select
+                  [options]="statusOptions.slice(1)"
+                  [ngModel]="value"
+                  optionLabel="label" optionValue="value"
+                  placeholder="All Status"
+                  (onChange)="filter($event.value)">
+                </p-select>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="location">Location
+            <p-sortIcon field="location"></p-sortIcon>
+            <p-columnFilter type="text" field="location" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="cpu" style="min-width:8rem">CPU
+            <p-sortIcon field="cpu"></p-sortIcon>
+            <p-columnFilter field="cpu" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="mem" style="min-width:8rem">Memory
+            <p-sortIcon field="mem"></p-sortIcon>
+            <p-columnFilter field="mem" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="temp" style="min-width:8rem">Temp
+            <p-sortIcon field="temp"></p-sortIcon>
+            <p-columnFilter field="temp" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="uptime" style="min-width:8rem">Uptime
+            <p-sortIcon field="uptime"></p-sortIcon>
+            <p-columnFilter field="uptime" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="alerts" style="min-width:7rem">Alerts
+            <p-sortIcon field="alerts"></p-sortIcon>
+            <p-columnFilter field="alerts" display="menu"></p-columnFilter>
+          </th>
+          <th pResizableColumn pSortableColumn="lastUpdate" style="min-width:10rem">Last Update
+            <p-sortIcon field="lastUpdate"></p-sortIcon>
+            <p-columnFilter type="text" field="lastUpdate" display="menu"></p-columnFilter>
+          </th>
+          <th style="width:3rem">Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="row" [pSelectableRowIndex]="rowIndex">
+          <td class="text-center">
+            <p-tableCheckbox [value]="row"></p-tableCheckbox>
+          </td>
+          <td>
+            <div class="font-medium">{{ row.name }}</div>
+            <div class="text-color-secondary text-sm">{{ row.id }}</div>
+          </td>
+          <td>
+            <p-tag
+              [severity]="row.status === 'Online' ? 'success'
+                          : row.status === 'Warning' ? 'warn'
+                          : 'danger'"
+              [value]="row.status">
+            </p-tag>
+          </td>
+          <td>{{ row.location }}</td>
+          <td>{{ row.cpu }}%</td>
+          <td>{{ row.mem }}%</td>
+          <td>{{ row.temp }}°C</td>
+          <td>{{ row.uptime }}%</td>
+
+          <!-- Icon with corner pill in table -->
+          <td>
+            <ng-container *ngIf="row.alerts > 0; else noAlerts">
+              <span class="icon-badges">
+                <i class="bi bi-bell icon"></i>
+                <span class="badge rounded-pill bg-danger">{{ row.alerts }}</span>
+              </span>
+            </ng-container>
+            <ng-template #noAlerts>--</ng-template>
+          </td>
+
+          <td>{{ row.lastUpdate }}</td>
+          <td class="text-right">
+            <button pButton type="button" icon="bi bi-three-dots-vertical" pRipple (click)="rowMenu.toggle($event)"></button>
+            <p-menu #rowMenu [model]="actionItems(row)" [popup]="true" styleClass="w-14rem"></p-menu>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="11" class="text-center py-4">No devices found</td></tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
