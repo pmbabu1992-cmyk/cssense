@@ -1,19 +1,30 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Node.js Express + MongoDB API (CRUD + Swagger)",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "docs:json": "node -e \"console.log(JSON.stringify(require('./src/config/swagger').swaggerSpec,null,2))\" > openapi.json",
+    "test": "echo \"No tests yet\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["express", "api", "mongo", "swagger"],
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "mongoose": "^8.19.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": ">=22.21.0"
   }
 }
