@@ -11,12 +11,19 @@
     "docs:json": "node -e \"console.log(JSON.stringify(require('./src/config/swagger').swaggerSpec,null,2))\" > openapi.json",
     "test": "echo \"No tests yet\" && exit 0"
   },
-  "keywords": ["express", "api", "mongo", "swagger"],
+  "keywords": [
+    "express",
+    "api",
+    "mongo",
+    "swagger"
+  ],
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-validator": "^7.3.0",
     "mongoose": "^8.19.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"

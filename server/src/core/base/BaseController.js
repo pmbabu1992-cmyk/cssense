@@ -20,6 +20,7 @@ class BaseController {
       const doc = await this.svc.create(req.body);
       res.status(201).json(doc);
     } catch (e) {
+      console.error('Create error:', e); // logs full error
       throw new BadRequestError(e.message);
     }
   });

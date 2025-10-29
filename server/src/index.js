@@ -31,7 +31,7 @@ const corsOptions = originList.length
     }
   : { credentials: true };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Health
 app.get('/api/health', (_req, res) =>

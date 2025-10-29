@@ -1,10 +1,42 @@
 ﻿const mongoose = require('mongoose');
-const { Schema } = mongoose;
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
-// Loose schema to read ALL existing fields from the 'users' collection.
-// Keeps timestamps for new writes, but won't block reading older docs.
-// If you want strict validation later, replace {} with an explicit schema.
-const schema = new Schema({}, { strict: false, timestamps: true, collection: 'users' });
+const userSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: false }, // Make password not required
+  role: { type: String, enum: ['user', 'admin'], default: 'user' },
+  name: String,
+  org: String,
+  status: String,
+  profile: { type: mongoose.Schema.Types.Mixed },
+  isActive: { type: Boolean, default: true },
+  roles: [String]
+}, { timestamps: true });
 
-// Prevent OverwriteModelError during hot-reloads / tests.
-module.exports = mongoose.models.User || mongoose.model('User', schema);
+// Generate default password and hash before saving
+userSchema.pre('save', async function(next) {
+  try {
+    // If password is not provided, generate a random one
+    if (!this.password) {
+      this.password = crypto.randomBytes(16).toString('hex');
+    }
+    
+    // Only hash the password if it has been modified (or is new)
+    if (!this.isModified('password')) return next();
+    
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Method to compare passwords
+userSchema.methods.comparePassword = async function(candidatePassword) {
+  return await bcrypt.compare(candidatePassword, this.password);
+};
+
+module.exports = mongoose.model('User', userSchema);

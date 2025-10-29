@@ -30,6 +30,12 @@ const Controller = require('./users.controller');
 const v = require('./users.validators');
 
 const ctrl = new Controller(new Service(new Repo(Model)));
-router.get('/', ctrl.list); router.get('/:id', ctrl.get);
-router.post('/', v.validateCreate, ctrl.create); router.put('/:id', v.validateUpdate, ctrl.update); router.delete('/:id', ctrl.remove);
+
+router.get('/', ctrl.list);
+router.get('/:id', v.validateIdParam, ctrl.get);
+
+router.post('/', v.validateCreate, ctrl.create);
+router.put('/:id', v.validateIdParam, v.validateUpdate, ctrl.update);
+router.delete('/:id', v.validateIdParam, ctrl.remove);
+
 module.exports = router;
