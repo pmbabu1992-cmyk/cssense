@@ -117,28 +117,28 @@ export class ProfileComponent implements OnInit {
     {
       iconClass: 'ion-logo-github',
       name: 'Github',
-      link: 'github.com/spruko',
+      link: 'github.com/cssense',
       bgClass: 'media-icon bg-primary-transparent ',
       textClass: 'text-primary',
     },
     {
       iconClass: 'ri-twitter-x-fill',
       name: 'Twitter',
-      link: 'twitter.com/spruko.me',
+      link: 'twitter.com/cs.sense',
       bgClass: 'media-icon bg-success-transparent',
       textClass: 'text-success',
     },
     {
       iconClass: 'ion-logo-linkedin',
       name: 'Linkedin',
-      link: 'linkedin.com/in/spruko',
+      link: 'linkedin.com/in/cssense',
       bgClass: 'media-icon bg-info-transparent',
       textClass: 'text-info',
     },
     {
       iconClass: 'ion-md-link',
       name: 'My Portfolio',
-      link: 'spruko.com/',
+      link: 'cs.sense.com/',
       bgClass: 'media-icon bg-danger-transparent',
       textClass: 'text-danger',
     }
