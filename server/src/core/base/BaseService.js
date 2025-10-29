@@ -1,9 +1,33 @@
 class BaseService {
-  constructor(repo) { this.repo = repo; }
-  list(params)  { return this.repo.list(params); }
-  get(id, opts) { return this.repo.get(id, opts); }
-  create(data)  { return this.repo.create(data); }
-  update(id, d) { return this.repo.update(id, d); }
-  remove(id)    { return this.repo.remove(id); }
+  constructor(repo) {
+    this.repo = repo;
+  }
+
+  async create(data) {
+    return await this.repo.create(data);
+  }
+
+  async get(id) {
+    return await this.repo.get(id);
+  }
+
+  async list(query = {}) {
+    const filter = this.repo.buildFilter(query);
+    return await this.repo.list(filter);
+  }
+
+  async update(id, data) {
+    return await this.repo.update(id, data);
+  }
+
+  async remove(id) {
+    return await this.repo.remove(id);
+  }
+
+  async count(query = {}) {
+    const filter = this.repo.buildFilter(query);
+    return await this.repo.count(filter);
+  }
 }
+
 module.exports = BaseService;

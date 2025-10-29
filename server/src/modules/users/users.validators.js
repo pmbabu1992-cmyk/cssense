@@ -22,7 +22,6 @@ exports.validateCreate = [
   body('password').optional().isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
   body('role').optional().isIn(['user', 'admin']).withMessage('Role must be user or admin'),
 
-  // Persist these optional fields from your payload
   body('name').optional().trim().notEmpty(),
   body('org').optional().trim().notEmpty(),
   body('status').optional().trim().notEmpty(),
@@ -35,10 +34,8 @@ exports.validateCreate = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     
-    // Get matched data
     const validatedData = matchedData(req, { includeOptionals: true, onlyValidData: false });
     
-    // Manually add roles and isActive if they exist in the original body
     if (req.body.roles !== undefined) {
       validatedData.roles = req.body.roles;
     }
@@ -60,12 +57,14 @@ exports.validateUpdate = [
   body('createdAt').not().exists().withMessage('Do not provide createdAt'),
   body('updatedAt').not().exists().withMessage('Do not provide updatedAt'),
 
-  body('username').optional().trim().notEmpty(),
-  body('email').optional().isEmail().normalizeEmail(),
+  // Prevent updating these fields
+  body('name').not().exists().withMessage('Cannot update name field'),
+  body('username').not().exists().withMessage('Cannot update username field'),
+  body('email').not().exists().withMessage('Cannot update email field'),
+
   body('password').optional().isLength({ min: 6 }),
   body('role').optional().isIn(['user', 'admin']),
 
-  body('name').optional().trim().notEmpty(),
   body('org').optional().trim().notEmpty(),
   body('status').optional().trim().notEmpty(),
   body('profile').optional().isObject().withMessage('Profile must be an object'),
@@ -77,10 +76,8 @@ exports.validateUpdate = [
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     
-    // Get matched data
     const validatedData = matchedData(req, { includeOptionals: true, onlyValidData: false });
     
-    // Manually add roles and isActive if they exist in the original body
     if (req.body.roles !== undefined) {
       validatedData.roles = req.body.roles;
     }

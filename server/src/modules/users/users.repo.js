@@ -1,6 +1,32 @@
-const BaseRepository = require('../../core/base/BaseRepository');
+const BaseRepo = require('../../core/base/BaseRepo');
 
-class UsersRepository extends BaseRepository {
+class UsersRepo extends BaseRepo {
+  constructor(model) {
+    super(model);
+  }
+
+  // Override update if you need custom logic
+  async update(id, data) {
+    // Remove password from updates if it's empty or undefined
+    if (!data.password) {
+      delete data.password;
+    }
+    
+    return await this.model.findByIdAndUpdate(
+      id,
+      { $set: data },
+      { new: true, runValidators: true }
+    );
+  }
+
+  async findByEmail(email) {
+    return await this.model.findOne({ email });
+  }
+
+  async findByUsername(username) {
+    return await this.model.findOne({ username });
+  }
+
   buildFilter(q = {}) {
     const f = {};
     if (q.org)    f.org = q.org;
@@ -11,4 +37,5 @@ class UsersRepository extends BaseRepository {
     return f;
   }
 }
-module.exports = UsersRepository;
+
+module.exports = UsersRepo;
