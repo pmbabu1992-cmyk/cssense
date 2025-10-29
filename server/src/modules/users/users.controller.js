@@ -1,31 +1,10 @@
 const BaseController = require('../../core/base/BaseController');
+const ResponseHandler = require('../../core/http/ResponseHandler');
 
 class UsersController extends BaseController {
   constructor(service) {
     super(service);
   }
-
-  // Override update to exclude password from response
-  update = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const data = req.body;
-      
-      const updated = await this.service.update(id, data);
-      
-      if (!updated) {
-        return res.status(404).json({ message: 'User not found' });
-      }
-
-      // Remove password from response
-      const response = updated.toObject();
-      delete response.password;
-
-      res.json(response);
-    } catch (error) {
-      next(error);
-    }
-  };
 
   // Override create to exclude password from response
   create = async (req, res, next) => {
@@ -37,7 +16,29 @@ class UsersController extends BaseController {
       const response = created.toObject();
       delete response.password;
 
-      res.status(201).json(response);
+      return ResponseHandler.created(res, response, 'User created successfully');
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  // Override update to exclude password from response
+  update = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      
+      const updated = await this.service.update(id, data);
+      
+      if (!updated) {
+        return ResponseHandler.notFound(res, 'User not found');
+      }
+
+      // Remove password from response
+      const response = updated.toObject();
+      delete response.password;
+
+      return ResponseHandler.updated(res, response, 'User updated successfully');
     } catch (error) {
       next(error);
     }
@@ -50,14 +51,14 @@ class UsersController extends BaseController {
       const item = await this.service.get(id);
       
       if (!item) {
-        return res.status(404).json({ message: 'User not found' });
+        return ResponseHandler.notFound(res, 'User not found');
       }
 
       // Remove password from response
       const response = item.toObject();
       delete response.password;
 
-      res.json(response);
+      return ResponseHandler.success(res, response);
     } catch (error) {
       next(error);
     }
@@ -66,7 +67,7 @@ class UsersController extends BaseController {
   // Override list to exclude passwords from response
   list = async (req, res, next) => {
     try {
-      const items = await this.service.list();
+      const items = await this.service.list(req.query);
       
       // Remove passwords from all users
       const response = items.map(item => {
@@ -75,7 +76,7 @@ class UsersController extends BaseController {
         return user;
       });
 
-      res.json(response);
+      return ResponseHandler.success(res, response, 'Users retrieved successfully');
     } catch (error) {
       next(error);
     }
