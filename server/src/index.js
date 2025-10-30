@@ -74,7 +74,12 @@ app.use('/api/profiles',     require('./modules/profiles/profiles.routes'));
 app.use('/api/sensor-data',  require('./modules/sensorData/sensorData.routes'));
 app.use('/api/sensordatas',  require('./modules/sensorDatas/sensorDatas.routes'));
 app.use('/api/telemetry',    require('./modules/telemetry/telemetry.routes'));
-app.use('/api/users',        require('./modules/users/users.routes'));
+
+const authRoutes = require('./modules/auth/auth.routes');
+const usersRoutes = require('./modules/users/users.routes');
+
+app.use('/api/auth', authRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/widgets',      require('./modules/widgets/widgets.routes'));
 
 // 404 handler
@@ -107,3 +112,31 @@ connectDB()
   });
 
 module.exports = app;
+
+/*
+JWT_SECRET=your-super-secret-key-change-this-in-production
+JWT_EXPIRES_IN=24h
+JWT_REFRESH_EXPIRES_IN=7d
+*/
+
+/*
+POST /api/auth/login
+{
+  "email": "john.doe@example.com",
+  "password": "SecurePass123"
+}
+*/
+
+/*
+POST /api/auth/refresh
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+*/
+
+// router.get('/profile', authenticate, (req, res) => {
+//   // req.user contains decoded JWT payload
+//   res.json(req.user);
+// });
+
+// router.delete('/:id', authenticate, authorize('admin', 'ADMIN'), ctrl.remove);

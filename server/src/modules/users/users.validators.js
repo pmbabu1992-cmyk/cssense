@@ -19,12 +19,19 @@ exports.validateCreate = [
       throw new Error('Email already in use');
     }
   }),
+  body('mobilenumber').trim().notEmpty().withMessage('Mobile Number is required').custom(async (value) => {
+    const existingUser = await User.findOne({ mobilenumber: value });
+    if (existingUser) {
+      throw new Error('Mobile Number already in use');
+    }
+  }),
   body('password').optional().isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
   body('role').optional().isIn(['user', 'admin']).withMessage('Role must be user or admin'),
+  body('alternateemail').optional().trim().notEmpty(),
+  body('alternatemobilenumber').optional().trim().notEmpty(),
 
   body('name').optional().trim().notEmpty(),
   body('org').optional().trim().notEmpty(),
-  body('status').optional().trim().notEmpty(),
   body('profile').optional().isObject().withMessage('Profile must be an object'),
   body('isActive').optional().isBoolean().withMessage('isActive must be a boolean'),
   body('roles').optional().isArray().withMessage('Roles must be an array'),
@@ -61,12 +68,13 @@ exports.validateUpdate = [
   body('name').not().exists().withMessage('Cannot update name field'),
   body('username').not().exists().withMessage('Cannot update username field'),
   body('email').not().exists().withMessage('Cannot update email field'),
+  body('mobilenumber').not().exists().withMessage('Cannot update mobileNumber field'),
 
   body('password').optional().isLength({ min: 6 }),
   body('role').optional().isIn(['user', 'admin']),
-
+  body('alternateemail').optional().trim().notEmpty(),
+  body('alternatemobilenumber').optional().trim().notEmpty(),
   body('org').optional().trim().notEmpty(),
-  body('status').optional().trim().notEmpty(),
   body('profile').optional().isObject().withMessage('Profile must be an object'),
   body('isActive').optional().isBoolean().withMessage('isActive must be a boolean'),
   body('roles').optional().isArray().withMessage('Roles must be an array'),

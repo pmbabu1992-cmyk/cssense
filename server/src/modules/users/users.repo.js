@@ -20,6 +20,7 @@ class UsersRepo extends BaseRepo {
   }
 
   async findByEmail(email) {
+    console.warn('Finding user by email:', email);
     return await this.model.findOne({ email });
   }
 

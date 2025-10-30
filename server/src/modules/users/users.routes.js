@@ -40,23 +40,13 @@
  *           type: string
  *           description: Organization name
  *           example: TechCorp Inc
- *         status:
- *           type: string
- *           description: User status
- *           example: active
  *         profile:
  *           type: object
- *           description: User profile information
- *           properties:
- *             fullName:
- *               type: string
- *               example: John Doe
- *             timezone:
- *               type: string
- *               example: Asia/Kolkata
- *             department:
- *               type: string
- *               example: Engineering
+ *           description: User profile information (flexible schema)
+ *           example:
+ *             fullName: John Doe
+ *             timezone: Asia/Kolkata
+ *             department: Engineering
  *         isActive:
  *           type: boolean
  *           default: true
@@ -68,6 +58,19 @@
  *             type: string
  *           description: List of user roles
  *           example: ["ADMIN", "USER"]
+ *         mobilenumber:
+ *           type: string
+ *           description: Primary mobile number
+ *           example: "+1234567890"
+ *         alternateemail:
+ *           type: string
+ *           format: email
+ *           description: Alternate email address
+ *           example: john.alternate@example.com
+ *         alternatemobilenumber:
+ *           type: string
+ *           description: Alternate mobile number
+ *           example: "+0987654321"
  *         createdAt:
  *           type: string
  *           format: date-time
@@ -106,18 +109,13 @@
  *         org:
  *           type: string
  *           example: TechCorp Inc
- *         status:
- *           type: string
- *           example: active
  *         profile:
  *           type: object
- *           properties:
- *             fullName:
- *               type: string
- *               example: John Doe
- *             timezone:
- *               type: string
- *               example: Asia/Kolkata
+ *           description: Flexible user profile data
+ *           example:
+ *             fullName: John Doe
+ *             timezone: Asia/Kolkata
+ *             department: Engineering
  *         isActive:
  *           type: boolean
  *           example: true
@@ -126,6 +124,16 @@
  *           items:
  *             type: string
  *           example: ["ADMIN", "USER"]
+ *         mobilenumber:
+ *           type: string
+ *           example: "+1234567890"
+ *         alternateemail:
+ *           type: string
+ *           format: email
+ *           example: john.alternate@example.com
+ *         alternatemobilenumber:
+ *           type: string
+ *           example: "+0987654321"
  *     
  *     UserUpdateRequest:
  *       type: object
@@ -141,18 +149,13 @@
  *         org:
  *           type: string
  *           example: TechCorp Inc
- *         status:
- *           type: string
- *           example: inactive
  *         profile:
  *           type: object
- *           properties:
- *             fullName:
- *               type: string
- *               example: John Updated Doe
- *             timezone:
- *               type: string
- *               example: UTC
+ *           description: Flexible user profile data
+ *           example:
+ *             fullName: John Updated Doe
+ *             timezone: UTC
+ *             department: Marketing
  *         isActive:
  *           type: boolean
  *           example: false
@@ -161,6 +164,16 @@
  *           items:
  *             type: string
  *           example: ["USER", "EDITOR"]
+ *         mobilenumber:
+ *           type: string
+ *           example: "+1234567890"
+ *         alternateemail:
+ *           type: string
+ *           format: email
+ *           example: john.alternate@example.com
+ *         alternatemobilenumber:
+ *           type: string
+ *           example: "+0987654321"
  *       description: Note - username, email, and name cannot be updated
  *     
  *     SuccessResponse:
@@ -252,11 +265,6 @@
  *           schema:
  *             $ref: '#/components/schemas/UserCreateRequest'
  *           examples:
- *             minimal:
- *               summary: Minimal user creation
- *               value:
- *                 username: johndoe
- *                 email: john.doe@example.com
  *             full:
  *               summary: Full user creation
  *               value:
@@ -266,13 +274,20 @@
  *                 name: Jane Doe
  *                 role: admin
  *                 org: TechCorp Inc
- *                 status: active
  *                 profile:
  *                   fullName: Jane Doe
  *                   timezone: Asia/Kolkata
  *                   department: Engineering
  *                 isActive: true
  *                 roles: ["ADMIN", "USER"]
+ *                 mobilenumber: "+1234567890"
+ *                 alternateemail: jane.alternate@example.com
+ *                 alternatemobilenumber: "+0987654321"
+ *               minimal:
+ *                 summary: Minimal user creation
+ *                 value:
+ *                   username: johndoe
+ *                   email: john.doe@example.com
  *     responses:
  *       201:
  *         description: User created successfully
@@ -361,19 +376,21 @@
  *             partial:
  *               summary: Partial update
  *               value:
- *                 status: inactive
  *                 isActive: false
+ *                 mobilenumber: "+9876543210"
  *             full:
  *               summary: Full update
  *               value:
  *                 role: admin
  *                 org: NewOrg Inc
- *                 status: active
  *                 profile:
  *                   fullName: Updated Name
  *                   timezone: UTC
  *                 isActive: true
  *                 roles: ["ADMIN", "EDITOR"]
+ *                 mobilenumber: "+1234567890"
+ *                 alternateemail: updated.email@example.com
+ *                 alternatemobilenumber: "+0987654321"
  *     responses:
  *       200:
  *         description: User updated successfully

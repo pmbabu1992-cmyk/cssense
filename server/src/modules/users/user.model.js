@@ -9,10 +9,12 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   name: String,
   org: String,
-  status: String,
   profile: { type: mongoose.Schema.Types.Mixed },
   isActive: { type: Boolean, default: true },
-  roles: [String]
+  roles: [String],
+  mobilenumber: String,
+  alternateemail: String,
+  alternatemobilenumber: String,
 }, { timestamps: true });
 
 // Generate default password and hash before saving
@@ -36,7 +38,15 @@ userSchema.pre('save', async function(next) {
 
 // Method to compare passwords
 userSchema.methods.comparePassword = async function(candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
+  try {
+    if (!this.password || !candidatePassword) {
+      return false;
+    }
+    return await bcrypt.compare(candidatePassword, this.password);
+  } catch (error) {
+    console.error('Password comparison error:', error);
+    return false;
+  }
 };
 
 module.exports = mongoose.model('User', userSchema);
