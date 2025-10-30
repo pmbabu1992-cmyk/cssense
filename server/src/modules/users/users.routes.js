@@ -95,10 +95,6 @@
  *           type: string
  *           format: email
  *           example: john.doe@example.com
- *         password:
- *           type: string
- *           minLength: 6
- *           example: SecurePass123
  *         name:
  *           type: string
  *           example: John Doe
@@ -256,7 +252,7 @@
  *                         $ref: '#/components/schemas/User'
  *   post:
  *     summary: Create a new user
- *     description: Create a new user with auto-generated password if not provided
+ *     description: Create a new user; password is auto-generated on the server and must not be provided in the payload
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -270,7 +266,6 @@
  *               value:
  *                 username: janedoe
  *                 email: jane.doe@example.com
- *                 password: SecurePass123
  *                 name: Jane Doe
  *                 role: admin
  *                 org: TechCorp Inc
