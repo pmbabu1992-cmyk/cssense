@@ -1,0 +1,218 @@
+<app-page-header [title]="'Add User'" [items]="['cs']" [active_item]="'Add User'"></app-page-header>
+
+<!-- Start:: row-1 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">User Information</div>
+      </div>
+      <div class="card-body">
+        <!-- User Form -->
+        <form class="row g-3 needs-validation" [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+          <!-- Username Field -->
+          <div class="col-md-4">
+            <label for="userUsername" class="form-label">Username <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              formControlName="username" 
+              id="userUsername" 
+              placeholder="Enter username"
+              [readonly]="isEdit"
+              [ngClass]="{ 'is-invalid': (submitted || f['username'].touched) && f['username'].invalid }">
+            @if ((submitted || f['username'].touched) && f['username'].errors) {
+              <div class="invalid-feedback">
+                @if (f['username'].errors['required']) { Username is required. }
+                @if (f['username'].errors['minlength']) { Username must be at least 3 characters. }
+              </div>
+            }
+          </div>
+          <!-- Name Field -->
+          <div class="col-md-4">
+            <label for="userName" class="form-label">Name <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              formControlName="name" 
+              id="userName" 
+              placeholder="Enter full name"
+              [readonly]="isEdit"
+              [ngClass]="{ 'is-invalid': (submitted || f['name'].touched) && f['name'].invalid }">
+            @if ((submitted || f['name'].touched) && f['name'].errors) {
+              <div class="invalid-feedback">
+                @if (f['name'].errors['required']) {
+                  Name is required.
+                }
+                @if (f['name'].errors['minlength']) {
+                  Name must be at least 2 characters.
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Email Field -->
+          <div class="col-md-4">
+            <label for="userEmail" class="form-label">Email <span class="text-danger">*</span></label>
+            <input 
+              type="email" 
+              class="form-control" 
+              formControlName="email" 
+              id="userEmail" 
+              placeholder="user@example.com"
+              [readonly]="isEdit"
+              [ngClass]="{ 'is-invalid': (submitted || f['email'].touched) && f['email'].invalid }">
+            @if ((submitted || f['email'].touched) && f['email'].errors) {
+              <div class="invalid-feedback">
+                @if (f['email'].errors['required']) {
+                  Email is required.
+                }
+                @if (f['email'].errors['email']) {
+                  Please provide a valid email address.
+                }
+              </div>
+            }
+          </div>
+
+          
+
+          <!-- Roles Field (Multi-select) -->
+          <div class="col-md-4">
+            <label for="userRoles" class="form-label">Roles <span class="text-danger">*</span></label>
+            <cs-ng-select 
+              class="form-control" 
+              id="userRoles" 
+              [placeholder]="'Select roles'" 
+              [options]="rolesOptions"
+              [multiple]="true"
+              [maxSelectedItems]="2"
+              [defaultValue]="userForm.get('roles')?.value"
+              (selectedChange)="onRolesChange($event)"
+              [ngClass]="{ 'is-invalid': (submitted || f['roles'].touched) && f['roles'].invalid }">
+            </cs-ng-select>
+            @if ((submitted || f['roles'].touched) && f['roles'].errors) {
+              <div class="invalid-feedback d-block">
+                At least one role is required.
+              </div>
+            }
+          </div>
+
+          <!-- Organization Field -->
+          <div class="col-md-4">
+            <label for="userOrg" class="form-label">Organization <span class="text-danger">*</span></label>
+            <input 
+              type="text" 
+              class="form-control" 
+              formControlName="org" 
+              id="userOrg" 
+              placeholder="Enter organization name"
+              [ngClass]="{ 'is-invalid': (submitted || f['org'].touched) && f['org'].invalid }">
+            @if ((submitted || f['org'].touched) && f['org'].errors) {
+              <div class="invalid-feedback">
+                Organization is required.
+              </div>
+            }
+          </div>
+
+          <!-- Mobile Number Field -->
+          <div class="col-md-4">
+            <label for="userMobile" class="form-label">Mobile Number <span class="text-danger">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              id="userMobile"
+              placeholder="e.g. +1234567890"
+              formControlName="mobilenumber"
+              [ngClass]="{ 'is-invalid': (submitted || f['mobilenumber'].touched) && f['mobilenumber'].invalid }">
+            @if ((submitted || f['mobilenumber'].touched) && f['mobilenumber'].errors) {
+              <div class="invalid-feedback">
+                @if (f['mobilenumber'].errors['required']) { Mobile number is required. }
+                @if (f['mobilenumber'].errors['pattern']) { Enter a valid phone number (7-15 digits, optional +). }
+              </div>
+            }
+          </div>
+
+          <!-- Alternate Email Field -->
+          <div class="col-md-4">
+            <label for="alternateEmail" class="form-label">Alternate Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="alternateEmail"
+              placeholder="alternate@example.com"
+              formControlName="alternateemail"
+              [ngClass]="{ 'is-invalid': (submitted || f['alternateemail'].touched) && f['alternateemail'].invalid }">
+            @if ((submitted || f['alternateemail'].touched) && f['alternateemail'].errors) {
+              <div class="invalid-feedback">
+                Please provide a valid alternate email address.
+              </div>
+            }
+          </div>
+
+          <!-- Alternate Mobile Number Field -->
+          <div class="col-md-4">
+            <label for="alternateMobile" class="form-label">Alternate Mobile Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="alternateMobile"
+              placeholder="e.g. +0987654321"
+              formControlName="alternatemobilenumber"
+              [ngClass]="{ 'is-invalid': (submitted || f['alternatemobilenumber'].touched) && f['alternatemobilenumber'].invalid }">
+            @if ((submitted || f['alternatemobilenumber'].touched) && f['alternatemobilenumber'].errors) {
+              <div class="invalid-feedback">
+                Enter a valid phone number (7-15 digits, optional +).
+              </div>
+            }
+          </div>
+
+          <!-- Profile Fields -->
+          <div class="col-12" formGroupName="profile">
+            <label class="form-label d-block mb-1">Profile</label>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  formControlName="fullName" 
+                  id="profileFullName" 
+                  placeholder="Full Name">
+              </div>
+              <div class="col-md-4">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  formControlName="department" 
+                  id="profileDepartment" 
+                  placeholder="Department">
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="col-12">
+            <button 
+              class="btn btn-primary me-2" 
+              type="submit"
+              [disabled]="isLoading">
+              @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                {{ isEdit ? 'Updating...' : 'Creating...' }}
+              } @else {
+                {{ isEdit ? 'Update User' : 'Create User' }}
+              }
+            </button>
+            <button 
+              class="btn btn-secondary" 
+              type="button"
+              (click)="onCancel()"
+              [disabled]="isLoading">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-1 -->

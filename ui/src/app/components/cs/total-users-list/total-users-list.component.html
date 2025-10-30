@@ -1,0 +1,287 @@
+<app-page-header [title]="'Total Users'" [items]="['cs']" [active_item]="'Total Users'"></app-page-header>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-title">Users List</div>
+        <button 
+          pButton 
+          type="button" 
+          icon="pi pi-refresh" 
+          class="btn btn-primary btn-sm"
+          (click)="refreshUsers()"
+          [disabled]="isLoading">
+          Refresh
+        </button>
+      </div>
+
+<!-- Reusable modal: content-only template -->
+<ng-template #userDetailsTpl let-user>
+  <div class="row g-3">
+    <!-- Username -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Username</label>
+      <p class="form-control-plaintext">{{ user?.username }}</p>
+    </div>
+    <!-- Email -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Email</label>
+      <p class="form-control-plaintext">{{ user?.email }}</p>
+    </div>
+    <!-- Name -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Name</label>
+      <p class="form-control-plaintext">{{ user?.name || '-' }}</p>
+    </div>
+    <!-- Organization -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Organization</label>
+      <p class="form-control-plaintext">{{ user?.org || '-' }}</p>
+    </div>
+    <!-- Roles -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Roles</label>
+      <p class="form-control-plaintext">
+        <span *ngFor="let role of user?.roles" class="badge me-1" [ngClass]="getRolesBadge(user?.roles)">
+          {{ role }}
+        </span>
+        <span *ngIf="!user?.roles || user?.roles.length === 0">-</span>
+      </p>
+    </div>
+    <!-- Status -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Status</label>
+      <p class="form-control-plaintext">
+        <p-tag [value]="getStatusLabel(user?.isActive)" [severity]="getStatusSeverity(user?.isActive)"></p-tag>
+      </p>
+    </div>
+    <!-- Mobile Number -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Mobile Number</label>
+      <p class="form-control-plaintext">{{ user?.mobilenumber || '-' }}</p>
+    </div>
+    <!-- Alternate Email -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Alternate Email</label>
+      <p class="form-control-plaintext">{{ user?.alternateemail || '-' }}</p>
+    </div>
+    <!-- Alternate Mobile -->
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Alternate Mobile Number</label>
+      <p class="form-control-plaintext">{{ user?.alternatemobilenumber || '-' }}</p>
+    </div>
+    <!-- Profile Section -->
+    <div class="col-12" *ngIf="user?.profile">
+      <hr>
+      <h6 class="text-muted">Profile Information</h6>
+    </div>
+    <div class="col-md-6" *ngIf="user?.profile?.fullName">
+      <label class="form-label fw-bold text-muted">Full Name</label>
+      <p class="form-control-plaintext">{{ user?.profile?.fullName }}</p>
+    </div>
+    <div class="col-md-6" *ngIf="user?.profile?.timezone">
+      <label class="form-label fw-bold text-muted">Timezone</label>
+      <p class="form-control-plaintext">{{ user?.profile?.timezone }}</p>
+    </div>
+    <div class="col-md-6" *ngIf="user?.profile?.department">
+      <label class="form-label fw-bold text-muted">Department</label>
+      <p class="form-control-plaintext">{{ user?.profile?.department }}</p>
+    </div>
+    <!-- Timestamps -->
+    <div class="col-12">
+      <hr>
+      <h6 class="text-muted">Timestamps</h6>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Created At</label>
+      <p class="form-control-plaintext">{{ user?.createdAt | date:'medium' }}</p>
+    </div>
+    <div class="col-md-6">
+      <label class="form-label fw-bold text-muted">Updated At</label>
+      <p class="form-control-plaintext">{{ user?.updatedAt | date:'medium' }}</p>
+    </div>
+  </div>
+</ng-template>
+      <div class="card-body">
+        <!-- Toolbar (Themed like Liveview) -->
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3 w-100">
+          <div class="input-group input-group-md" style="max-width:28rem;">
+            <span class="input-group-text bg-body-secondary border-end-0">
+              <i class="bi bi-search"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control border-start-0 border-end-0"
+              placeholder="Search users, emails, org, mobile..."
+              aria-label="Search"
+              [(ngModel)]="searchText"
+              (ngModelChange)="onSearchChange($event)"
+            />
+            <button class="btn btn-primary border-start-0" type="button" (click)="applyGlobalSearch()">
+              Search
+            </button>
+          </div>
+
+          <div class="ms-auto d-flex gap-2">
+            <button 
+              pButton 
+              type="button" 
+              icon="pi pi-filter-slash" 
+              class="btn btn-outline-secondary btn-sm"
+              (click)="clearFilters()">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- PrimeNG Table -->
+        <p-table 
+          #dt
+          [value]="users()" 
+          [rows]="10" 
+          [paginator]="true"
+          [rowsPerPageOptions]="[5, 10, 25, 50]"
+          [loading]="isLoading"
+          [globalFilterFields]="['username', 'email', 'name', 'org', 'mobilenumber']"
+          [(selection)]="selectedUsers"
+          [rowHover]="true"
+          dataKey="_id"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [showCurrentPageReport]="true"
+          styleClass="p-datatable-gridlines p-datatable-striped">
+          
+          <!-- Selection Column -->
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 4rem">
+                <p-checkbox 
+                  [(ngModel)]="selectedUsers" 
+                  [binary]="true"
+                  inputId="selectAll">
+                </p-checkbox>
+              </th>
+              <th pSortableColumn="username">
+                Username <p-sortIcon field="username"></p-sortIcon>
+              </th>
+              <th pSortableColumn="email">
+                Email <p-sortIcon field="email"></p-sortIcon>
+              </th>
+              <th pSortableColumn="name">
+                Name <p-sortIcon field="name"></p-sortIcon>
+              </th>
+              <th pSortableColumn="org">
+                Organization <p-sortIcon field="org"></p-sortIcon>
+              </th>
+              <th>Roles</th>
+              <th pSortableColumn="mobilenumber">
+                Mobile <p-sortIcon field="mobilenumber"></p-sortIcon>
+              </th>
+              <th pSortableColumn="isActive" style="width: 120px;">
+                Status <p-sortIcon field="isActive"></p-sortIcon>
+              </th>
+              <th style="width: 100px;">Actions</th>
+            </tr>
+          </ng-template>
+
+          <!-- Body -->
+          <ng-template pTemplate="body" let-user>
+            <tr>
+              <td>
+                <p-checkbox 
+                  [(ngModel)]="selectedUsers" 
+                  [value]="user"
+                  inputId="{{user._id}}">
+                </p-checkbox>
+              </td>
+              <td>
+                <strong>{{ user.username }}</strong>
+              </td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.name || '-' }}</td>
+              <td>{{ user.org || '-' }}</td>
+              <td>
+                <span 
+                  *ngFor="let role of user.roles" 
+                  class="badge me-1"
+                  [ngClass]="getRolesBadge(user.roles)">
+                  {{ role }}
+                </span>
+                <span *ngIf="!user.roles || user.roles.length === 0" class="text-muted">-</span>
+              </td>
+              <td>{{ user.mobilenumber || '-' }}</td>
+              <td>
+                <p-tag 
+                  [value]="getStatusLabel(user.isActive)" 
+                  [severity]="getStatusSeverity(user.isActive)">
+                </p-tag>
+              </td>
+              <td>
+                <div ngbDropdown class="dropdown">
+                  <button
+                    ngbDropdownToggle
+                    type="button"
+                    class="btn btn-sm btn-light"
+                    aria-label="Actions"
+                  >
+                    <i class="bi bi-three-dots-vertical"></i>
+                  </button>
+                  <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+                    <button ngbDropdownItem type="button" (click)="viewUser(user)">
+                      <i class="bi bi-eye me-2"></i> View
+                    </button>
+                    <button ngbDropdownItem type="button" (click)="editUser(user)">
+                      <i class="bi bi-pencil me-2"></i> Edit
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <button ngbDropdownItem type="button" (click)="deleteUser(user)" class="text-danger">
+                      <i class="bi bi-trash me-2"></i> Delete
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+
+          <!-- Empty Message -->
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="9" class="text-center py-4">
+                <i class="pi pi-inbox" style="font-size: 3rem; color: var(--text-color-secondary);"></i>
+                <p class="mt-3 mb-0 text-muted">No users found.</p>
+              </td>
+            </tr>
+          </ng-template>
+
+          <!-- Loading -->
+          <ng-template pTemplate="loadingbody">
+            <tr>
+              <td colspan="9" class="text-center py-4">
+                <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
+                <p class="mt-2 mb-0">Loading users...</p>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+        <!-- Selection Info -->
+        <div *ngIf="selectedUsers.length > 0" class="mt-3">
+          <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <span>
+              <i class="pi pi-info-circle me-2"></i>
+              {{ selectedUsers.length }} user(s) selected
+            </span>
+            <button 
+              pButton 
+              type="button" 
+              label="Clear Selection" 
+              icon="pi pi-times" 
+              class="p-button-text p-button-sm"
+              (click)="selectedUsers = []">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

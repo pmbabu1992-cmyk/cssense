@@ -5,8 +5,10 @@ import { AppsRoutingModule } from 'src/app/components/apps/apps.routes.';
 import { FileManagerRoutingModule } from 'src/app/components/apps/file-manager/file-manager-routes';
 import { ApexchartsRoutingModule } from 'src/app/components/charts/apexcharts/apexcharts.routes';
 import { ChartRoutingModule } from 'src/app/components/charts/charts.routes';
+import { addUserRoutingModule } from 'src/app/components/cs/add-user/add-user.routes';
 import { dashboardHtabsRoutingModule } from 'src/app/components/cs/dashboard-htabs/dashboard_htabs.routes';
 import { LiveviewRoutingModule } from 'src/app/components/cs/liveview/liveview.routes';
+import { totalUsersListRoutingModule } from 'src/app/components/cs/total-users-list/total-users-list.routes';
 import { DashboardRoutingModule } from 'src/app/components/dashboard/dashboard.routes';
 import { ElementsRoutingModule } from 'src/app/components/elements/elements.routes';
 import { FormEditorsRoutingModule } from 'src/app/components/form/form-editors/form-editors.routes';
@@ -47,6 +49,8 @@ export const Full_Content_Routes: Routes = [
 
       ...LiveviewRoutingModule.routes,
       ...dashboardHtabsRoutingModule.routes,
+      ...addUserRoutingModule.routes,
+      ...totalUsersListRoutingModule.routes,
     ]
   }
 ];
